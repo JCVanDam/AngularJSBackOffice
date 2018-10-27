@@ -1,0 +1,90 @@
+@boxmargin      : 3px;
+@boxradius      : 3px;
+@bordercolor    : #E5E4E2;
+
+#snapcall-popin {
+    position: fixed;
+    z-index: 900;
+    bottom: @boxmargin;
+    right: @boxmargin;
+    width: 300px;
+    border: 1px solid @bordercolor;
+    border-radius: @boxradius;
+    -moz-border-radius: @boxradius;
+    -webkit-border-radius: @boxradius;
+    -o-border-radius: @boxradius;
+    background: white;
+    color: black;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+
+    .header {
+        border-bottom: 1px solid @bordercolor;
+        overflow: auto;
+
+        .logo, .invite, .controls {
+            float: left;
+            padding: 12px 12px;
+        }
+
+        .logo, .controls {
+            width: calc(80px - 24px);
+        }
+
+        .invite {
+            width: calc(140px - 24px);
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis; 
+        }
+    }
+
+    .body {
+        text-align: center;
+
+        .rating {
+            padding: 15px 15px;
+
+            img {
+                width: 30px;
+            }
+        }
+
+        .dialogs {
+            padding: 10px 15px;
+
+            .message-closed, .message-dialing, .message-rating, .message-timer, .error-channel, .error-browser, .error-connect, .error-timeout {
+                display: block;
+            }
+
+            .txt-big, .txt-medium, .txt-small {
+                padding: 5px 15px;
+            }
+
+            .txt-big {
+                font-size: 17px;
+
+                img {
+                    width: 35%;
+                }
+            }
+
+            .txt-medium {
+                font-size: 14px;
+                
+                img {
+                    width: 25%;
+                }
+            }
+
+            .txt-small {
+                font-size: 11px;
+
+                img {
+                    width: 15%;
+                }                
+            }
+        }
+    }
+}

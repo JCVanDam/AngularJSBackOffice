@@ -1,0 +1,235 @@
+<div ng-controller="widgetListCtrl">
+	<div ng-include="'views/mainmenu.html'"></div>
+	<div class="page" style="overflow:hidden">
+		<div class="page-header-gen">
+			<div class="page-header-wrapper">
+				<img src="https://admin.snapcall.io/img/icon_black.svg" />Boutons
+				<div class="page-header-text">Cr&eacute;ez et &eacute;ditez vos boutons 'click to speak' ici</div>
+			</div>
+		</div>
+		<div class="page-nav">
+			<div class="page-nav-wrapper">
+				<div class="nav">
+					<span class="fa fa-home"></span>Accueil<span class="fa fa-angle-right"></span>Boutons<span class="fa fa-angle-right"></span>Mes boutons
+				</div>
+			</div>
+		</div>
+		<div class="page-wrapper">
+			<div class="page-row">
+				<div class="panel">
+					<div class="panel-header">
+						<div class="title">
+							Mes boutons
+						</div>
+						<div class="tools">
+							<div ng-click="widgetCreate()">
+								<img src={{image}} height="30" width="30"></img>
+							</div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="data-table" style="height:65%; overflow:scroll;">
+							<table>
+								<tr>
+									<td class="table-important">#</td>
+									<td class="table-important">Nom</td>
+									<td class="table-important">Num&eacute;ro Appelant</td>
+									<td class="table-important">Num&eacute;ro Appel&eacute;</td>
+									<td class="table-important">Planning</td>
+									<!--
+									<td class="table-important">Context</td>
+								-->
+									<td class="table-important"></td>
+									<td class="table-important">&nbsp;</td>
+								</tr>
+								<tr class="widgetsmenu-item" ng-repeat="widget in widgets">
+									<td>{{$index + 1}}</td>
+									<td>
+										<div id="main-widget-list" ng-click="widgetModify(widget)">
+											<div class="txt-important">{{ widget.name }}</div>
+											<div class="txt-detail">{{ widget.service }} {{ widget.brand }} {{ widget.product }}</div>
+										</div>
+									</td>
+									<td>{{ widget.caller_id }}</td>
+									<td>{{ widget.call_id }}</td>
+									<!-- <td ng-init='drawGraph(widget.bid_id, $index)'><canvas class="widget-list" id="widget-{{$index}}"></canvas></td> -->
+									<td>
+										<span ng-class="state[$index]">{{ widget.closed }}</span>
+									</td>
+									<!--<td>
+										<span ng-class="TMP[$index]" ng-click="goToContext()" style="cursor: pointer;">{{ TMPcontext[$index] }}</span>
+									</td> -->
+									<!--
+									<td>
+										<div ng-show="licenceError[{{$index}}]" ng-click="toggleModal('addContextFail', widget.name)" style="display: inline-block; padding: 0px 7px; cursor: pointer;">
+											<span class="fa fa-exclamation-triangle"></span>
+											</br>
+											<span style="font-size: 10px;">LICENCE </br> MANQUANTE</span>
+										</div>
+									</td>
+								-->
+									<td width="240px" class="txt-center">
+										<div style="display: inline-block;padding: 0px 7px;">
+											<img ng-mouseover="displayTooltip($event, $index, 'android')" ng-mouseleave="tooltip['android'][$index]=false" ng-click="toggleModal('android', { bid_id: widget.bid_id })" src="img/android.svg" height="20px" width="20px" style="cursor: pointer;">
+											<span ng-show="tooltip['android'][$index]" class="tooltip" style="top: {{y}}; left: {{x}};">Integration dans Android</span>
+											</br>
+											<span style="font-size: 10px;">ANDROID</span>
+										</div>
+										<div style="display: inline-block;padding: 0px 7px;">
+											<img ng-mouseover="displayTooltip($event, $index, 'ios')" ng-mouseleave="tooltip['ios'][$index]=false" ng-click="toggleModal('ios', { bid_id: widget.bid_id })" src="img/apple.svg" height="20px" width="20px" style="cursor: pointer;">
+											<span ng-show="tooltip['ios'][$index]" class="tooltip" style="top: {{y}}; left: {{x}};">Integration dans IOS</span>
+											</br>
+											<span style="font-size: 10px;">IOS</span>
+										</div>
+										<div style="display: inline-block;padding: 0px 7px;">
+											<span class="fa fa-code" ng-mouseover="displayTooltip($event, $index, 'html')" ng-mouseleave="tooltip['html'][$index]=false" ng-click="toggleModal('embed', { bid_id: widget.bid_id })" style="cursor: pointer;"></span>
+											<span ng-show="tooltip['html'][$index]" class="tooltip" style="top: {{y}}; left: {{x}};">Integration dans une page web</span>
+											</br>
+											<span style="font-size: 10px;">HTML</span>
+										</div>
+										<div style="display: inline-block;padding: 0px 7px;">
+											<a href="https://snapappsandbox.snapcall.io/dist/snapcall/html/hosted.php?bid={{ widget.bid_id }}" target="_blank">
+												<span class="fa fa-cloud" ng-mouseover="displayTooltip($event, $index, 'page')" ng-mouseleave="tooltip['page'][$index]=false" style="font-size: 18px;padding: 0px 3px;"></span>
+												<span ng-show="tooltip['page'][$index]" class="tooltip" style="top: {{y}}; left: {{x}};">Hebergement</span>
+												</br>
+												<span style="font-size: 10px;">PAGE</span>
+											</a>
+										</div>
+										<div style="display: inline-block;padding: 0px 7px;">
+											<a ng-click="toggleModal('delete', { bid_id: widget.bid_id, name: widget.name })">
+												<span class="fa fa-close" ng-mouseover="displayTooltip($event, $index, 'delete')" ng-mouseleave="tooltip['delete'][$index]=false" style="font-size: 18px;padding: 0px 3px;"></span>
+												<span ng-show="tooltip['delete'][$index]" class="tooltip" style="top: {{y}}; left: {{x}};">Suppression</span>
+												</br>
+												<span style="font-size: 10px;">&nbsp;</span>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="sublimboxbg" ng-show="modal.addContextFail">
+			<div id="sublimbox">
+				<div class="title" style="font-size: 16px; font-weight: bold; padding: 15px; border-bottom: 1px solid rgb(219, 218, 216);">
+					Context
+				</div>
+				<div class="body" style="padding: 15px; font-size: 15px;">
+					<div class="dialog" style="text-align: left; font-size: 15px;">
+						<div style="margin-bottom: 5px">
+							Vous n'avez pas de licence disponible pour le bouton {{ modalArgs }}.
+						</br>
+							Afin de faire remonter le context que vous avez selectionn&eacute; ajoutez une licence sur le num&eacute;ro appell&eacute;.
+						</div>
+					</div>
+					<div class="controls" style="display:flex; justify-content: space-around; margin-top: 15px;">
+						<div id="sublimbox-btn" ng-click="goToContext()">
+							<span class="fa fa-mail-forward"></span>
+							Ajouter
+						</div>
+						<div id="sublimbox-btn" ng-click="modal.addContextFail=!modal.addContextFail">
+							<span class="fa fa-close fa-fw"></span>
+							Fermer
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="sublimboxbg" ng-show="modal.embed">
+			<div id="sublimbox">
+				<div class="title" style="font-size: 16px; font-weight: bold; padding: 15px; border-bottom: 1px solid rgb(219, 218, 216);">
+					Int&eacute;gration du bouton
+				</div>
+				<div class="body" style="padding: 15px; font-size: 15px;">
+					<div class="dialog" style="text-align: left; font-size: 15px;">
+						<div style="margin-bottom: 5px">
+							Copiez-collez le code HTML ci-dessous pour embarquer le bouton Snapcall sur votre site web
+						</div>
+						</br>
+						<div class="codeblock">
+							&lt;div class="snapcall" btn-bid="{{ modalArgs.bid_id }}"&gt;&lt;/div&gt;&lt;script src="https://snapappsandbox.snapcall.io/dist/snapcall/js/app.min.js"&gt;&lt;/script&gt;
+						</div>
+					</div>
+					<div class="controls" style="display:flex; margin-top: 15px;">
+						<div id="sublimbox-btn" ng-click="toggleModal('embed', null)">
+							<span class="fa fa-close fa-fw"></span>
+							Fermer
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="sublimboxbg" ng-show="modal.android">
+			<div id="sublimbox">
+				<div class="title" style="font-size: 16px; font-weight: bold; padding: 15px; border-bottom: 1px solid rgb(219, 218, 216);">
+					Int&eacute;gration dans Android
+				</div>
+				<div class="body" style="padding: 15px; font-size: 15px;">
+					<div class="dialog" style="text-align: left; font-size: 15px;">
+						<div style="margin-bottom: 5px">
+							R&eacute;cup&eacute;rer le framework via le pod suivant:
+						</div>
+						</br>
+						<div class="codeblock">
+							CODE A INTEGRER
+						</div>
+					</div>
+					<div class="controls" style="display:flex; margin-top: 15px;">
+						<div id="sublimbox-btn" ng-click="toggleModal('android', null)">
+							<span class="fa fa-close fa-fw"></span>
+							Fermer
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="sublimboxbg" ng-show="modal.ios">
+			<div id="sublimbox">
+				<div class="title" style="font-size: 16px; font-weight: bold; padding: 15px; border-bottom: 1px solid rgb(219, 218, 216);">
+					Int&eacute;gration dans ios
+				</div>
+				<div class="body" style="padding: 15px; font-size: 15px;">
+					<div class="dialog" style="text-align: left; font-size: 15px;">
+						<div style="margin-bottom: 5px">
+							R&eacute;cup&eacute;rer le SDK sur le d&eacute;pot git hub suivant:
+						</div>
+						</br>
+						<div class="codeblock">
+							pod 'snapcall_framework', :git => 'https://snapcall@bitbucket.org/seampl/framework_snapcall_ios.git'
+						</div>
+					</div>
+					<div class="controls" style="display:flex; margin-top: 15px;">
+						<div id="sublimbox-btn" ng-click="toggleModal('ios', null)">
+							<span class="fa fa-close fa-fw"></span>
+							Fermer
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="sublimboxbg" ng-show="modal.delete">
+			<div id="sublimbox">
+				<div class="title" style="font-size: 16px; font-weight: bold; padding: 15px; border-bottom: 1px solid rgb(219, 218, 216);"><span class="fa fa-flask" style="margin-right: 10px;"></span>
+					{{ modalArgs.name }}
+				</div>
+				<div class="body" style="padding: 15px; font-size: 15px;">
+					<div class="dialog" style="text-align: left; font-size: 15px;">
+						Vous allez supprimer un bouton. Etes vous certain ?
+					</div>
+					<div class="controls" style="display:flex; justify-content: space-around; margin-top: 15px;">
+						<div id="sublimbox-btn" ng-click="deleteWidget(modalArgs.bid_id)">
+							<span class="fa fa-trash fa-fw"></span>
+							Supprimer
+						</div>
+						<div id="sublimbox-btn" ng-click="toggleModal('delete', null)">
+							<span class="fa fa-close fa-fw"></span>
+							Fermer
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

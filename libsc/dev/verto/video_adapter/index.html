@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" />
+    <meta charset="utf-8" />
+    <title>FreeSWITCH Verto and Adapter</title>
+
+    <style type="text/css">
+      .pageheader {
+      	 font-size: 22px;
+      	 font-weight: normal;
+      	 height: 27px;
+      }
+
+      .ctlbtn {
+      	 border: 2px;
+      	 border-style:outset;
+      	 color: #ffffff;
+      	 min-width: 125px;
+      	 background-color: #666666;
+      	 font-face: arial;
+      	 height:18px;
+      	 font-size:7pt;
+      }
+
+      .ctlbtn:hover {
+      	 color: #ffffae;
+      	 cursor: pointer;
+      }
+
+      .vidbtn {
+      	font-face: arial;
+              font-size:7pt;
+      }
+
+      #chatwin
+      {
+      	background-color: #eeeeee;
+      	width: 500px;
+      	height:150px;
+      	overflow-y: scroll;
+      	scrolling: auto;
+      	text-align: left;
+      	border-style:inset;
+      	font-size: 10pt;
+      	color: #3333ff;
+      	resize:both;
+      }
+
+      .chatuid
+      {
+      	font-size: 7pt;
+      	font-weight: bold;
+      	color: #ff3333;
+      }
+
+      .chatimg
+      {
+      	max-width:100px;
+      }
+
+      .l1
+      {
+      	border:1;
+      	background-color:#fefefe;
+      	height:1px;
+      	opacity:0.4;
+      }
+      #chatmsg
+      {
+      	width:400px;
+      	max-height:40px;
+      }
+
+      div#preload { display: none; }
+
+    </style>
+
+  </head>
+  <body>
+
+        <video id="webcam" autoplay="autoplay" style="width:20%;height:20%;object-fit:inherit;"></video>
+
+	     <br>
+       <center>	
+          <h1>Seampl Test changement de page</h1>
+
+       </center>
+       <br><br>	
+       <div id="offline">
+
+          <script>
+            function playvid(file)
+            {
+            	$("#ext").val("vid_" + file);
+            	$("#callbtn").click();
+            }
+
+            function dial(ext)
+            {
+            	$("#ext").val(ext);
+            	$("#callbtn").click();
+            }
+          </script>
+          <br><br><br>      
+	     </div>
+       <div id="online" align="center" style="width:75%">
+	       <div class="ui-field-contain">
+
+            <script>
+              function toggle_demo() {
+                if ($('#demos').is(':visible')) {
+                  $('#demos').hide();
+                  $('#showdemo').text("Show Demo Extensions");
+                } else {
+                  $('#devices').hide();$('#showdevices').show();$('#demos').show();
+                  $('#showdemo').text("Hide Demo Extensions");
+                }
+              }
+
+              function toggle_device() {
+                if ($('#devices').is(':visible')) {
+                  $('#devices').hide();
+                  $('#showdevices').text("View Device Settings");
+                } else {
+                  $('#devices').show();$('#demos').hide();
+                  $('#showdevices').text("Hide Device Settings");
+                }
+              }
+            </script>
+
+            <br><br><br><hr><br>
+
+            <select data-theme="a" data-overlay-theme="a" data-native-menu="false" id="usecamera"></select>
+            <div class="ui-field-contain">
+	             <label for="name">Extension</label>  
+	             <input type="text" id="ext""/>
+            </div>
+
+	          <button data-inline="true" id="callbtn">Call Extension</button>
+            <br>
+            <button data-inline="true" id="hupbtn">End Call</button>
+            <hr>
+              <br><br>
+	            <div style="color:blue" id="main_info">&nbsp;</div>
+              <br><br>
+
+	       </div>
+	       <br>
+	       <br>
+          <p>
+          <a target="_blank" href="index.html">Lien pour ouvrir un nouveau onglet</a>
+          </p>
+          <p>
+          <a target="_self" href="index.html">Lien pour charger une nouvelle page</a>
+          </p>
+          <p>
+          <a target="_blank" href="index.html" onclick="close_window();return false;">Lien pour fermer et ouvrir un nouveau onglet</a>
+          </p>
+
+          <h2>Incoming Call</h2>
+          <div data-role="content">
+            <div id="dialog-incoming-call-txt"><p>Incoming Call</p></div>
+            <button id="ansbtn">Answer</button> 
+            <div id="vansdiv"><button id="vansbtn">Answer Video</button></div>
+            <button id="declinebtn">Decline</button>
+          </div>   
+       </div>
+
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script> 
+    <script type="text/javascript" src="js/jquery.mobile.min.js"></script> 
+    <script type="text/javascript" src="js/jquery.json-2.4.min.js"></script>  
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+    <!-- <script type="text/javascript" src="js/verto-min.js"></script> -->
+    <script type="text/javascript" src="js/jquery.verto.js"></script>
+    <script type="text/javascript" src="js/jquery.jsonrpcclient.js"></script>
+    <script type="text/javascript" src="js/jquery.FSRTC.js"></script>
+    <script type="text/javascript" src="js/adapter-latest.js"></script>
+    
+<!--     <script type="text/javascript" src="js/getScreenId.js"></script>
+    <script type="text/javascript" src="js/md5.min.js"></script>
+    <script type="text/javascript" src="js/jquery.hipchat.js"></script>	 -->
+    <script type="text/javascript" src="verto.js"></script>
+     <!--<script src="https://apis.google.com/js/client:platform.js?onload=render" async defer></script>-->
+  </body>
+</html>
+

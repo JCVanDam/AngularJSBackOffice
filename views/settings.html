@@ -1,0 +1,118 @@
+<div ng-controller="settingsCtrl">
+	<div ng-include="'views/mainmenu.html'"></div>
+	<div class="page">
+		<div class="page-header-gen">
+			<div class="page-header-wrapper">
+				<span class="fa fa-cog"></span>Param&egrave;tres
+				<div class="page-header-text">Modifiez les informations relatives &agrave; votre compte</div>
+			</div>
+		</div>
+		<div class="page-nav">
+			<div class="page-nav-wrapper">
+				<div class="nav">
+					<span class="fa fa-home"></span>Accueil<span class="fa fa-angle-right"></span>Param&egrave;tres<span class="fa fa-angle-right"></span>Mon compte
+				</div>
+			</div>
+		</div>
+		<div class="page-wrapper">
+			<div class="page-row">
+				<div class="page-col" style="width: 300px">
+					<div class="panel">
+						<div class="ux-menu-title">
+							<span class="fa fa-user"></span>
+								MON COMPTE
+						</div>
+						<div class="ux-menu-tag">
+							<span class="fa fa-chevron-down"></span>
+							Informations
+						</div>
+						<ul class="ux-menu-list">
+							<li ng-class="selectToggle.general" ng-click="toggle('general')"><span class="fa fa-bullseye"></span>G&eacute;n&eacute;ral</li>
+							<li ng-class="selectToggle.pwd" ng-click="toggle('pwd')"><span class="fa fa-lock"></span>Mot de passe</li>
+						</ul>
+					</div>
+				</div>
+				<div class="page-col" style="width: calc(100% - 300px);">
+					<div class="panel" ng-show="block.general">
+						<div class="panel-header">
+							<div class="title">
+								Informations du compte
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="ux-txt-info">
+								Modifiez les informations relatives &agrave; votre compte
+							</div>
+							<form id="form-account-general" ng-submit="submitGeneralData()">
+								<div class="ux-wrapper">
+									<div class="ux-block">
+										<div class="ux-label" ng-show="email">
+											Adresse email
+										</div>
+										<input type="text" name="email" class="ux-input ux-input-input ux-input-medium" ng-model="email" placeholder="Adresse email" required />
+									</div>
+									<div class="ux-block">
+										<div class="ux-label" ng-show="name">
+											Identité
+										</div>
+										<input type="text" name="name" class="ux-input ux-input-input ux-input-medium" ng-model="name" placeholder="Identite" required />
+									</div>
+									<div class="ux-block">
+										<div class="ux-label" ng-show="company">
+											Soci&eacute;t&eacute;
+										</div>
+										<input type="text" name="company" class="ux-input ux-input-input ux-input-medium" ng-model="company" placeholder="Societe" required />
+									</div>
+									<div class="ux-block">
+										<div class="ux-label" ng-show="access">
+											Acc&egrave;s
+										</div>
+										<input type="text" name="access" class="ux-input ux-input-input ux-input-medium" ng-model="access" placeholder="Acces" required />
+									</div>
+									<div class="ux-block">
+										<button id="buttonUpdateAccountGeneral" class="ux-input ux-input-input ux-input-medium mhover">
+											<span class="fa fa-check"></span>&nbsp;&nbsp;Sauvegarder
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="panel" ng-show="block.pwd">
+						<div class="panel-header">
+							<div class="title">
+								Mot de passe
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="ux-txt-info">
+								Modifiez vos identifiants de connexion
+							</div>
+							<form id="form-account-password" ng-submit="submitPwdData()">
+								<div class="ux-wrapper">
+									<div class="ux-block">
+										<div class="ux-label" ng-show="first_pwd">Actuel</div>
+										<input type="password" name="first_pwd" class="ux-input ux-input-input ux-input-medium" ng-model="first_pwd" placeholder="Actuel" required />
+									</div>
+									<div class="ux-block">
+										<div class="ux-label" ng-show="new_pwd">Nouveau</div>
+										<input type="password" name="new_pwd" class="ux-input ux-input-input ux-input-medium" ng-model="new_pwd" placeholder="Nouveau" required />
+									</div>
+									<div class="ux-block">
+										<div class="ux-label" ng-show="confirmation">Confirmer nouveau</div>
+										<input type="password" name="confirmation" class="ux-input ux-input-input ux-input-medium" ng-model="confirmation" placeholder="Confirmer nouveau" required />
+									</div>
+									<div class="ux-block">
+										<button type="submit" id="buttonUpdateAccountPassword" class="ux-input ux-input-input ux-input-medium mhover">
+											<span class="fa fa-check"></span>&nbsp;&nbsp;Sauvegarder
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

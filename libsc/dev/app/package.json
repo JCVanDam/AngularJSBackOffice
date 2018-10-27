@@ -1,0 +1,26 @@
+{
+  "name": "snapcall",
+  "version": "1.0.0",
+  "description": "click-to-call widget based on webRTC technology",
+  "main": "app.js",
+  "dependencies": {
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "jquery": "^3.1.1",
+    "requirejs": "^2.3.2",
+    "font-awesome": "^4.7.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-less": "^1.4.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-mustache-render": "^1.9.2"
+  },
+  "scripts": {},
+  "keywords": [
+    "snapcall"
+  ],
+  "author": "rludosanu",
+  "license": "ISC"
+}

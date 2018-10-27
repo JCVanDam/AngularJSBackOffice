@@ -1,0 +1,34 @@
+<div ng-controller="inscriptionCtrl">
+	<div id="signin-bg"></div>
+	<div id="signin-logo">
+		<img src="https://admin.snapcall.io/img/signin_logo.png" />
+	</div>
+	<div id="signin-box">
+		<form ng-submit="submit()">
+			<div id="mustache-test" style="text-align: center;color: white;font-size: 35px;"></div>
+			<div id="signin-box-email">
+				<input type="text" ng-model="name" class="input-xl" placeholder="Nom" required />
+			</div>
+			<div id="signin-box-email">
+				<input type="text" ng-model="company" class="input-xl" placeholder="soci&eacute;t&eacute;" required />
+			</div>
+			<div id="signin-box-email">
+				<input type="text" ng-model="email" class="input-xl" placeholder="Adresse mail" required />
+				<div class="signin-box-error" ng-show="emailError">Le format de l'adresse email n'est pas valide.</div>
+			</div>
+			<div id="signin-box-password">
+				<input type="password" ng-model="password" class="input-xl" placeholder="Mot de passe" required />
+				<div class="signin-box-error" ng-show="pwdError">Le mot de passe ne contient pas 8 caractères.</div>
+			</div>
+			<div id="signin-box-password">
+				<input type="password" ng-model="passwordConfirmation" class="input-xl" placeholder="Confirmation du mot de passe" required />
+				<div class="signin-box-error" ng-show="confirmationError">Les deux mots de passe ne sont pas identiques.</div>
+			</div>
+			<div id="signin-box-send">
+				<input type="image" src="img/inscription.png" alt="Submit Form" />
+			</div>
+		</form>
+	</div>
+	<div id="signin-mail">hello@snapcall.io</div>
+	<div id="signin-brand">&copy;Seampl2017</div>
+</div>

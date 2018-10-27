@@ -1,0 +1,220 @@
+<div class="bar" ng-controller="licenceCtrl">
+	<div ng-include="'views/mainmenu.html'"></div>
+	<div class="page">
+		<div class="page-header-gen">
+			<div class="page-header-wrapper">
+				<span class="fa fa-address-card"></span>Licence
+				<div class="page-header-text">Ajoutez une licence sur un num&eacute;ro appel&eacute;</div>
+			</div>
+		</div>
+		<div class="page-nav">
+			<div class="page-nav-wrapper">
+				<div class="nav">
+					<span class="fa fa-home"></span>Accueil<span class="fa fa-angle-right"></span>Licence
+				</div>
+			</div>
+		</div>
+		<div class="page-wrapper">
+			<div class="page-row">
+				<div class="page-col" style="width: 300px">
+					<div class="panel">
+						<div class="ux-menu-title">Licence</div>
+						<ul class="ux-menu-list">
+							<li ng-class="selectToggle.context" ng-click="toggle('context')"><span class="fa fa-edit"></span>Context</li>
+							<li ng-class="selectToggle.video" ng-click="toggle('video')"><span class="fa fa-camera"></span>Video</li>
+							<li ng-class="selectToggle.subscription" ng-click="toggle('subscription')"><span class="fa fa-handshake-o"></span>Souscription</li>
+						</ul>
+					</div>
+				</div>
+
+        <div class="page-col" style="width: calc(100% - 300px);">
+          <div class="panel" ng-show="block.context">
+            <div class="panel-header">
+              <div class="title">
+                Context
+              </div>
+            </div>
+						<div class="panel-body">
+							<div style="display:flex; margin: 15px;">
+								<div>{{residualLicence}} licences restante</div>
+								<div style="margin-left: 100px;">{{totalLicence}} licences diponible au total</div>
+							</div>
+							<div class="data-table" style="height:65%; overflow:scroll;">
+								<table>
+									<tr>
+										<td class="table-important">Numero Appel&eacute;</td>
+										<td class="table-important">Appliquer</td>
+									</tr>
+									<tr class="widgetsmenu-item" ng-repeat="widget in widgets">
+										<td>{{ widget.call_id }}</td>
+										<td>
+											<span><input type="checkbox" ng-checked="widget.opt_context=='1'" ng-click="toggleModal($index, widget.call_id)"></span>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-col" style="width: calc(100% - 300px);">
+					<div class="panel" ng-show="block.video">
+						<div class="panel-header">
+							<div class="title">
+								Video
+							</div>
+						</div>
+						<div class="panel-body">
+						</div>
+					</div>
+				</div>
+
+				<div class="page-col" style="width: calc(100% - 300px);">
+					<div class="panel" ng-show="block.subscription">
+						<div class="panel-header">
+							<div class="title">
+								Licence
+							</div>
+						</div>
+						<div class="panel-body">
+							<div style="display:flex;">
+								<div class="licence">
+									<div style="border-bottom: #DDDDDD 1px solid; height:100px; font-size:18px; text-align:center">
+										Offre numero 1
+									</div>
+									<div style="font-size:16px; text-align:center; margin-top:100px;">
+										Une licence pour un num&eacute;ro appel&eacute; pour 10 euro par mois.
+									</div>
+									<div style="height:100px; margin-top:75px;">
+										<div style="margin-top:40;text-align:center;">
+											<input ng-click="subscription('numero 1')" class="btn btn-default" type="submit" value="Souscrire &agrave; cette licence">
+										</div>
+									</div>
+								</div>
+								<div class="licence">
+									<div style="border-bottom: #DDDDDD 1px solid; height:100px; font-size:18px; text-align:center">
+
+										Offre numero 2
+									</div>
+									<div style="font-size:16px; text-align:center; margin-top:100px;">
+										Une licence pour 3 num&eacute;ro appel&eacute; pour 20 euro par mois.
+									</div>
+									<div style="height:100px; margin-top:75px;">
+										<div style="margin-top:40;text-align:center;">
+											<input ng-click="subscription('numero 2')" class="btn btn-default" type="submit" value="Souscrire &agrave; cette licence">
+										</div>
+									</div>
+								</div>
+								<div class="licence">
+									<div style="border-bottom: #DDDDDD 1px solid; height:100px; font-size:18px; text-align:center">
+										Offre numero 3
+									</div>
+									<div style="font-size:16px; text-align:center; margin-top:100px;">
+										Une licence pour 10 num&eacute;ro appel&eacute; pour 40 euro par mois.
+									</div>
+									<div style="height:100px; margin-top:75px;">
+										<div style="margin-top:40;text-align:center;">
+											<input ng-click="subscription('numero 3')" class="btn btn-default" type="submit" value="Souscrire &agrave; cette licence">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</div>
+
+					<div id="sublimboxbg" ng-show="modal.addContextSucess">
+						<div id="sublimbox">
+							<div class="title" style="font-size: 16px; font-weight: bold; padding: 15px; border-bottom: 1px solid rgb(219, 218, 216);">
+								Context
+							</div>
+							<div class="body" style="padding: 15px; font-size: 15px;">
+								<div class="dialog" style="text-align: left; font-size: 15px;">
+									<div style="margin-bottom: 5px">
+										L'option context &agrave; &eacute;t&eacute; ajout&eacute; avec succes sur le num&eacute;ro {{ modalArgs }}.
+									</div>
+									</br>
+								</div>
+								<div class="controls" style="display:flex; margin-top: 15px;">
+									<div id="sublimbox-btn" ng-click="modal.addContextSucess=!modal.addContextSucess">
+										<span class="fa fa-close fa-fw"></span>
+										Fermer
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div id="sublimboxbg" ng-show="modal.removeContext">
+						<div id="sublimbox">
+							<div class="title" style="font-size: 16px; font-weight: bold; padding: 15px; border-bottom: 1px solid rgb(219, 218, 216);">
+								Context
+							</div>
+							<div class="body" style="padding: 15px; font-size: 15px;">
+								<div class="dialog" style="text-align: left; font-size: 15px;">
+									<div style="margin-bottom: 5px">
+										L'option context &agrave; &eacute;t&eacute; enlev&eacute; avec succes sur le num&eacute;ro {{ modalArgs }}.
+									</div>
+									</br>
+								</div>
+								<div class="controls" style="display:flex; margin-top: 15px;">
+									<div id="sublimbox-btn" ng-click="modal.removeContext=!modal.removeContext">
+										<span class="fa fa-close fa-fw"></span>
+										Fermer
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div id="sublimboxbg" ng-show="modal.submitLicence">
+						<div id="sublimbox">
+							<div class="title" style="font-size: 16px; font-weight: bold; padding: 15px; border-bottom: 1px solid rgb(219, 218, 216);"><span class="fa fa-flask" style="margin-right: 10px;"></span>
+								Souscription &agrave; une licence.
+							</div>
+							<div class="body" style="padding: 15px; font-size: 15px;">
+								<div class="dialog" style="text-align: left; font-size: 15px;">
+									Vous &ecirc;tes sur le point de souscrire &agrave; la licence {{licenceName}} . Etes vous certain ?
+								</div>
+								<div class="controls" style="display:flex; justify-content: space-around; margin-top: 15px;">
+									<div id="sublimbox-btn" ng-click="getLicence(1)">
+										<span class="fa fa-check"></span>
+										Confirmer
+									</div>
+									<div id="sublimbox-btn" ng-click="modal.submitLicence=!modal.submitLicence">
+										<span class="fa fa-close fa-fw"></span>
+										Quitter
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+          <div id="sublimboxbg" ng-show="modal.licenceNotSufficient">
+    				<div id="sublimbox">
+    					<div class="title" style="font-size: 16px; font-weight: bold; padding: 15px; border-bottom: 1px solid rgb(219, 218, 216);"><span class="fa fa-flask" style="margin-right: 10px;"></span>
+    						Souscription &agrave; une licence.
+    					</div>
+    					<div class="body" style="padding: 15px; font-size: 15px;">
+    						<div class="dialog" style="text-align: left; font-size: 15px;">
+    							Vous n'avez plus de licence, pour en ajouter veuillez souscrire &agrave; un abonnement.
+    						</div>
+    						<div class="controls" style="display:flex; justify-content: space-around; margin-top: 15px;">
+    							<div id="sublimbox-btn" ng-click="displaySubscription()">
+    								<span class="fa fa-vcard-o"></span>
+    								Souscrire
+    							</div>
+    							<div id="sublimbox-btn" ng-click="modal.licenceNotSufficient=!modal.licenceNotSufficient">
+    								<span class="fa fa-close fa-fw"></span>
+    								Quitter
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

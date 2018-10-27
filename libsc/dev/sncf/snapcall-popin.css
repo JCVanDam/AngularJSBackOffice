@@ -1,0 +1,177 @@
+@font-face {
+    font-family: "Avenir_roman";
+    font-style: normal;
+    font-weight: normal;
+    src: url("https://sandbox.seampl.io/libsc/dev/sncf/fonts/Avenir_roman.eot");
+    src: url("https://sandbox.seampl.io/libsc/dev/sncf/fonts/Avenir_roman.ttf");
+}
+
+@font-face {
+    font-family: "Avenir_book";
+    font-style: normal;
+    font-weight: normal;
+    src: url("https://sandbox.seampl.io/libsc/dev/sncf/fonts/Avenir_book.eot");
+    src: url("https://sandbox.seampl.io/libsc/dev/sncf/fonts/Avenir_book.ttf");
+}
+
+@font-face {
+    font-family: "Avenir_black";
+    font-style: normal;
+    font-weight: normal;
+    src: url("https://sandbox.seampl.io/libsc/dev/sncf/fonts/Avenir_black.eot");
+    src: url("https://sandbox.seampl.io/libsc/dev/sncf/fonts/Avenir_black.ttf");
+}
+
+@font-face {
+    font-family: "Avenir_light";
+    font-style: normal;
+    font-weight: normal;
+    src: url("https://sandbox.seampl.io/libsc/dev/sncf/fonts/Avenir_light.eot");
+    src: url("https://sandbox.seampl.io/libsc/dev/sncf/fonts/Avenir_light.ttf");
+}
+
+@font-face {
+    font-family: "Avenir_medium";
+    font-style: normal;
+    font-weight: normal;
+    src: url("https://sandbox.seampl.io/libsc/dev/sncf/fonts/Avenir_medium.eot");
+    src: url("https://sandbox.seampl.io/libsc/dev/sncf/fonts/Avenir_medium.ttf");
+}
+
+@font-face {
+    font-family: "Avenir_heavy";
+    font-style: normal;
+    font-weight: normal;
+    src: url("https://sandbox.seampl.io/libsc/dev/sncf/fonts/Avenir_heavy.eot");
+    src: url("https://sandbox.seampl.io/libsc/dev/sncf/fonts/Avenir_heavy.ttf");
+}
+
+body {
+    font-family: Avenir_book, Arial, Helvetica, sans-serif;
+}
+
+.snapcall-popin {
+    background: white;
+    border: 1px solid #E5E4E2;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -o-border-radius: 3px;
+    color: black;
+    position: fixed;
+    bottom: 3px;
+    right: 3px;
+    width: 300px;
+}
+
+.snapcall-popin .bar {
+    font-size: 15px;
+    border-bottom: 1px solid #E5E4E2;
+    overflow: auto;
+}
+
+.snapcall-popin .bar:hover {
+    cursor: pointer;
+}
+
+.snapcall-popin .bar-in {
+    padding: 12px 12px;
+}
+
+.snapcall-popin .bar-ico, .snapcall-popin .bar-txt, .snapcall-popin .bar-cmd {
+    float: left;
+}
+
+.snapcall-popin .bar-ico, .snapcall-popin .bar-cmd {
+    width: 80px;
+}
+
+.snapcall-popin .bar-txt {
+    width: 140px;
+}
+
+.snapcall-popin .bar-cmd {
+    text-align: right;
+}
+
+.snapcall-popin .bar-txt, .snapcall-popin .bar-cmd {
+    margin-top: 5px;
+}
+
+.snapcall-popin .box {
+    display: none;
+    text-align: center;
+}
+
+.snapcall-btn {
+    width: 70px;
+    height: 70px;
+    margin: 10px auto;
+    background: url("data:image/svg+xml;base64, CiAgICAgICAgICAgIDxzdmcgaWQ9InN2ZyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTBweCIgaGVpZ2h0PSI1MHB4IiB2aWV3Qm94PSIwIDAgNTAgNTAiID4KICAgICAgICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgICAgIDxzdHlsZT4KICAgICAgICAgICAgICAgICAgLmNscy0wIHsgZmlsbDogI0ExMDA2QjsgfQogICAgICAgICAgICAgICAgICAuY2xzLTEgeyBmaWxsOiB3aGl0ZTsgfQogICAgICAgICAgICAgICAgICBALXdlYmtpdC1rZXlmcmFtZXMgYW5pbV96b29tIHsKICAgICAgICAgICAgICAgICAgICAwJSB7LXdlYmtpdC10cmFuc2Zvcm06c2NhbGUoMSl9CiAgICAgICAgICAgICAgICAgICAgNTAlIHstd2Via2l0LXRyYW5zZm9ybTpzY2FsZSgxKX0KICAgICAgICAgICAgICAgICAgICA3NSUgey13ZWJraXQtdHJhbnNmb3JtOnRyYW5zbGF0ZSgyMHB4LCAxOXB4KSBzY2FsZSgwKX0KICAgICAgICAgICAgICAgICAgICAxMDAlIHstd2Via2l0LXRyYW5zZm9ybTp0cmFuc2xhdGUoMHB4LCAwcHgpIHNjYWxlKDEpfQogICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgIC5ncm93IHsgLXdlYmtpdC1hbmltYXRpb246IGFuaW1fem9vbSA1cyBlYXNlLW91dCBpbmZpbml0ZTsgfQogICAgICAgICAgICAgICAgPC9zdHlsZT4KICAgICAgICAgICAgICA8L2RlZnM+CiAgICAgICAgICAgICAgPHRpdGxlPgogICAgICAgICAgICAgICAgQXNzZXQgMQogICAgICAgICAgICAgIDwvdGl0bGU+CiAgICAgICAgICAgICAgPGcgaWQ9IkxheWVyXzIiIGRhdGEtbmFtZT0iTGF5ZXIgMiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwxMCkiPgogICAgICAgICAgICAgICAgPHBhdGggY2xhc3M9ImNscy0wIiBkPSJNMzcuMjggMTBsLTEwLjEgMy44M2EuNy43IDAgMCAxLS44OS0uODhMMzAgMi43M0EyMCAyMCAwIDEgMCAzNy4yOCAxMHoiIGlkPSJmb3JtZSIgLz4KICAgICAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPHBhdGggY2xhc3M9ImNscy0xIGdyb3ciIGQ9Ik0xMi4xIDEyLjQyYTQuNDEgNC40MSAwIDAgMC0uNjYgMi4zOSAxNC44OSAxNC44OSAwIDAgMCA0LjcyIDkgMTQuODkgMTQuODkgMCAwIDAgOSA0LjcyIDQuNDIgNC40MiAwIDAgMCAyLjM5LS42NiAzLjQyIDMuNDIgMCAwIDAgMS41Ny0xLjM3IDUuMTcgNS4xNyAwIDAgMCAuMjctLjg4IDQuNDIgNC40MiAwIDAgMCAuMTMtLjkxLjc1Ljc1IDAgMCAwIDAtLjI3Yy0uMDUtLjE1LS4zOC0uMzgtMS0uNjhsLS43LS4zOUwyNyAyM2wtLjY5LS40LS4zMS0uMjVhMy44NiAzLjg2IDAgMCAwLS40Ni0uMjguODQuODQgMCAwIDAtLjM0LS4wNyAxLjEgMS4xIDAgMCAwLS42NC4zNiA2LjIgNi4yIDAgMCAwLS43MS44MSA4LjMgOC4zIDAgMCAxLS42OC43OSAxIDEgMCAwIDEtLjU5LjM2Ljc1Ljc1IDAgMCAxLS4yOS0uMDdsLS4yNi0uMS0uMzItLjE1LS4yNC0uMTVhMTMuNjYgMTMuNjYgMCAwIDEtMy0yLjI0IDEzLjYzIDEzLjYzIDAgMCAxLTIuMjMtM2wtLjE1LS4yNC0uMjEtLjM3YTIuMyAyLjMgMCAwIDEtLjEtLjI2Ljc3Ljc3IDAgMCAxLS4wNy0uMjkgMSAxIDAgMCAxIC4zNy0uNTkgOC4xMSA4LjExIDAgMCAxIC43OS0uNjggNi4yMSA2LjIxIDAgMCAwIC44MS0uNzEgMS4wOSAxLjA5IDAgMCAwIC4zNi0uNjQuODQuODQgMCAwIDAtLjA5LS4zNyAzLjkxIDMuOTEgMCAwIDAtLjI4LS40NmwtLjIyLS4zMkwxNyAxM2MtLjE0LS4yNS0uMjktLjUxLS40NS0uODFsLS4zOS0uN2MtLjMtLjYtLjUzLS45My0uNjgtMWEuNzMuNzMgMCAwIDAtLjI3IDAgNC4zNSA0LjM1IDAgMCAwLS45MS4xMyA1LjIxIDUuMjEgMCAwIDAtLjg4LjI3IDMuNDIgMy40MiAwIDAgMC0xLjMyIDEuNTN6IiBpZD0idGVsQiIvPgogICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9zdmc+CiAgICAgICAg");
+    background-size: 70px 70px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    transition: all 1.2s;
+    -webkit-transition: all 1.2s;
+    -moz-transition: all 1.2s;
+    -o-transition: all 1.2s;
+    -ms-transition: all 1.2s;
+}
+
+.snapcall-btn:hover {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    cursor: pointer;
+}
+
+.snapcall-rating {
+    padding: 15px 15px;
+}
+
+.snapcall-rating .fa {
+    font-size: 25px;
+}
+
+.snapcall-rating-star:hover {
+    cursor: pointer;
+}
+
+.snapcall-popin .rate-star:hover {
+    cursor: pointer;
+}
+
+.snapcall-dialog-invite, .snapcall-dialog-rating, .snapcall-dialog-connect, .snapcall-dialog-browser, .snapcall-dialog-timeout {
+    padding: 10px 15px;
+}
+
+.snapcall-rating, .snapcall-dialog-rating, .snapcall-dialog-connect, .snapcall-dialog-browser, .snapcall-dialog-timeout {
+    display: none;
+}
+
+.snapcall-dialog-size-big, .snapcall-dialog-size-medium, .snapcall-dialog-size-small {
+    padding: 5px 15px;
+}
+
+.snapcall-dialog-size-big {
+    font-size: 17px;
+}
+
+.snapcall-dialog-size-medium {
+    font-size: 14px;
+}
+
+.snapcall-dialog-size-small {
+    font-size: 11px;
+}
+
+.box-browser-icons {
+    margin-top: 15px;
+    font-size: 35px;
+}
+
+.clr-prune {
+    color: #A1006B;
+}

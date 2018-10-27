@@ -1,0 +1,191 @@
+body
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+.snapcall-btn
+{
+	transition: all 0.8s;
+	-webkit-transition: all 0.8s;
+	-moz-transition: all 0.8s;
+	-o-transition: all 0.8s;
+	-ms-transition: all 0.8s;
+}
+
+.snapcall-btn:hover
+{
+	transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	cursor: pointer;
+}
+
+.snapcall
+{
+	display: none;
+}
+
+.snapcall .pushbar
+{
+	width: 100%;
+	height: 70px;
+	background: gray;
+}
+
+.snapcall .callbar
+{
+	position: fixed;
+	z-index: 999;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 70px;
+	overflow: auto;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+.snapcall .dialog-initiate, .snapcall .dialog-closed, .snapcall .dialog-timer, .snapcall .dialog-rate, .snapcall .dialog-connect, .snapcall .dialog-browser, .snapcall .dialog-timeout, .snapcall .dialog-channel
+{
+	display: none;
+}
+
+.snapcall .logo, .snapcall .info, .snapcall .dialog, .snapcall .commands
+{
+	float: left;
+}
+
+.snapcall .logo
+{
+	width: 80px;
+	margin-top: 10px;
+	text-align: center;
+}
+
+.snapcall .info, .snapcall .dialog
+{
+	color: white;
+	font-size: 16px;
+	margin-top: 26px;
+}
+
+.snapcall .info
+{
+	width: 200px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.snapcall .commands
+{
+	width: 200px;
+}
+
+.snapcall .logo img
+{
+	width: 45px;
+}
+
+.snapcall .dialog
+{
+	text-align: center;
+	width: calc(100% - 480px);
+}
+
+.snapcall .dialog a
+{
+	text-decoration: none;
+	color: white;
+}
+
+.snapcall .dialog-command-launch, .snapcall .dialog-command-cancel
+{
+	padding: 8px 10px;
+	border: 2px solid white;
+	border-radius: 999px;
+	margin: 0px 5px;
+}
+
+.snapcall .dialog-command-launch:hover, .snapcall .dialog-command-cancel:hover
+{
+	cursor: pointer;
+}
+
+.snapcall-rating-star
+{
+	font-size: 22px;
+}
+
+.snapcall-rating-star:hover
+{
+	cursor: pointer;
+}
+
+.snapcall .commands
+{
+	width: 200px;
+	overflow: hidden;
+	overflow-x: auto;
+}
+
+.snapcall .commands .commands-icons
+{
+	display: none;
+}
+
+.snapcall .commands .mute, .snapcall .commands .hangup
+{
+	float: left;
+	margin-top: 8px;
+	transition: all 0.8s;
+	-webkit-transition: all 0.8s;
+	-moz-transition: all 0.8s;
+	-o-transition: all 0.8s;
+	-ms-transition: all 0.8s;
+	margin-bottom: 5px;
+}
+
+.snapcall .commands .mute:hover, .snapcall .commands .hangup:hover
+{
+	transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	cursor: pointer;
+}
+
+.snapcall .commands .hangup
+{
+	margin-left: 10px;
+	width: 45px;
+	height: 45px;
+	background: url('data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MHB4IiBoZWlnaHQ9IjUwcHgiIHZpZXdCb3g9IjAgMCA1MCA1MCI+DQoJPGRlZnM+DQoJCTxzdHlsZT4uY2xzLTF7ZmlsbDpyZWQ7fS5jbHMtMntmaWxsOiNmZmY7fQ0KCQk8L3N0eWxlPg0KCTwvZGVmcz4NCgk8dGl0bGU+QXNzZXQgMTwvdGl0bGU+DQoJPGcgaWQ9IkxheWVyXzIiIGRhdGEtbmFtZT0iTGF5ZXIgMiI+DQoJCTxnIGlkPSJMYXllcl8xLTIiIGRhdGEtbmFtZT0iTGF5ZXIgMSI+DQoJCQk8Y2lyY2xlIGNsYXNzPSJjbHMtMSIgY3g9IjI1IiBjeT0iMjUiIHI9IjI1Ii8+DQoJCQk8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xMS41NiwyOC4yN2E2LjE0LDYuMTQsMCwwLDEtLjU0LTEsNC4zLDQuMywwLDAsMSwuMTgtMi42QTUuNTMsNS41MywwLDAsMSwxMi43MywyMmMyLjg1LTIuMjEsNi40OS0zLjgyLDEyLjE3LTMuODFoMGM1LjY4LDAsOS4zMiwxLjYxLDEyLjE3LDMuODFhNS41MSw1LjUxLDAsMCwxLDEuNTMsMi43LDQuMjksNC4yOSwwLDAsMSwuMTgsMi42LDcuMTIsNy4xMiwwLDAsMS0uNTQsMSw1LjQ5LDUuNDksMCwwLDEtLjY5LjkxLDEsMSwwLDAsMS0uMjguMjEsMi44MSwyLjgxLDAsMCwxLTEuNDctLjI3bC0xLS4yNy0xLjEyLS4zMi0xLS4yNi0uNDgtLjA5YTQuNTUsNC41NSwwLDAsMS0uNjUtLjE2LDEsMSwwLDAsMS0uNDEtLjI1LDEuMzgsMS4zOCwwLDAsMS0uMjQtLjg5LDcuNzUsNy43NSwwLDAsMSwuMDgtMS4zNCwxMC42MywxMC42MywwLDAsMCwuMS0xLjMxLDEuMiwxLjIsMCwwLDAtLjItLjg0LDEsMSwwLDAsMC0uMzItLjJsLS4zMi0uMTQtLjQ0LS4xMi0uMzUtLjA4YTE3LjA3LDE3LjA3LDAsMCwwLTQuNjUtLjcsMTcuMTUsMTcuMTUsMCwwLDAtNC42Ni43bC0uMzUuMDktLjQzLjEyLS4zMi4xNGExLDEsMCwwLDAtLjMyLjIsMS4yMiwxLjIyLDAsMCwwLS4yLjg1LDExLjU5LDExLjU5LDAsMCwwLC4xLDEuMzEsNy43Myw3LjczLDAsMCwxLC4wOSwxLjM0LDEuMzUsMS4zNSwwLDAsMS0uMjUuODksMSwxLDAsMCwxLS40MS4yNSw1LjQ3LDUuNDcsMCwwLDEtLjY1LjE2bC0uNDguMDktMSwuMjYtMS4xMi4zMi0xLC4yOGEyLjg2LDIuODYsMCwwLDEtMS40Ny4yNi45MS45MSwwLDAsMS0uMjgtLjIxQTUuMzUsNS4zNSwwLDAsMSwxMS41NiwyOC4yN1oiLz4NCgkJPC9nPg0KCTwvZz4NCjwvc3ZnPg==');
+	background-size: 45px 45px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	border: 2px solid #FF0000;
+	border-radius: 999px;
+}
+
+.snapcall .commands .mute
+{
+	margin-left: 70px;
+	width: 30px;
+	height: 30px;
+	background-image: url('https://sandbox.seampl.io/libsc/snapcall/hosted-1.0.0/mic_on.png');
+	background-size: 30px 30px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	border: 2px solid white;
+	border-radius: 999px;
+	padding: 8px 8px;
+}
+
+.hide
+{
+	display: none;
+}

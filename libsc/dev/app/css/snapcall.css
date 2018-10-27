@@ -1,0 +1,286 @@
+/*
+** Snapcall CSS file
+**
+** about    : This defines the CSS for the button, the call bar and the popin
+** version  : 1.0.0
+** created  : 09/12/2016
+** updated  : 15/12/2016
+** author   : Razvan Ludosanu
+*/
+
+.snapcall .dialog {
+  padding: 10px 15px;
+  font-size: 15px;
+}
+
+.snapcall .rating {
+  display: none;
+}
+
+.snapcall-btn {
+  transition: all 0.8s;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+}
+.snapcall-btn:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  cursor: pointer;
+}
+
+#snapcall-pushbar,
+#snapcall-callbar {
+  display: none;
+  height: 70px;
+}
+
+#snapcall-pushbar {
+  width: 100%;
+}
+
+#snapcall-callbar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background: black;
+  color: white;
+}
+
+#snapcall-callbar a {
+  text-decoration: none;
+  color: white;
+}
+
+#snapcall-callbar .logo,
+#snapcall-callbar .service,
+#snapcall-callbar .dialog,
+#snapcall-callbar .rating,
+#snapcall-callbar .mute,
+#snapcall-callbar .detach,
+#snapcall-callbar .hangup {
+  position: absolute;
+  font-size: 16px;
+}
+
+#snapcall-callbar .logo,
+#snapcall-callbar .dialog,
+#snapcall-callbar .rating,
+#snapcall-callbar .mute,
+#snapcall-callbar .detach,
+#snapcall-callbar .hangup {
+  text-align: center;
+}
+
+#snapcall-callbar .logo,
+#snapcall-callbar .mute,
+#snapcall-callbar .detach,
+#snapcall-callbar .hangup {
+  width: 70px;
+}
+
+#snapcall-callbar .logo img,
+#snapcall-callbar .mute img,
+#snapcall-callbar .detach img,
+#snapcall-callbar .hangup img {
+  margin-top: 10px;
+}
+
+#snapcall-callbar .logo img {
+  width: 45px;
+}
+
+
+#snapcall-callbar .service {
+  margin-left: 70px;
+  width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#snapcall-callbar .service,
+#snapcall-callbar .dialog {
+  margin-top: 24px;
+}
+
+#snapcall-callbar .dialog,
+#snapcall-callbar .rating {
+  margin-left: 200px;
+  width: calc(100% - 350px);
+}
+
+#snapcall-callbar .dialog {
+  display: none;
+}
+
+#snapcall-callbar .cmd-call,
+#snapcall-callbar .cmd-cancel {
+  margin: 0px 5px;
+  border: 2px solid white;
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+#snapcall-callbar .cmd-call:hover,
+#snapcall-callbar .cmd-cancel:hover {
+  cursor: pointer;
+}
+
+#snapcall-callbar .rating {
+  display: none;
+  margin-top: 20px;
+}
+
+#snapcall-callbar .detach {
+  margin-left: calc(100% - 190px);
+}
+
+#snapcall-callbar .mute {
+  margin-left: calc(100% - 130px);
+}
+
+#snapcall-callbar .hangup {
+  margin-left: calc(100% - 70px);
+}
+
+#snapcall-callbar .menu {
+  display: none;
+  margin-left: calc(100% - 70px);
+}
+
+#snapcall-callbar .mute img,
+#snapcall-callbar .detach img,
+#snapcall-callbar .hangup img {
+  display: none;
+}
+
+#snapcall-callbar .mute img,
+#snapcall-callbar .detach img,
+#snapcall-callbar .hangup img {
+  width: 25px;
+  transition: all 0.8s;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+}
+
+#snapcall-callbar .mute img:hover,
+#snapcall-callbar .detach img:hover,
+#snapcall-callbar .hangup img:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  cursor: pointer;
+}
+
+#snapcall-callbar .hangup img,
+#snapcall-callbar .detach img,
+#snapcall-callbar .mute img {
+  border-radius: 999px;
+  padding: 10px 10px;
+}
+
+#snapcall-callbar .detach img,
+#snapcall-callbar .mute img {
+  border: 2px solid white;
+}
+
+#snapcall-callbar .hangup img {
+  background: red;
+  border: 2px solid red;
+}
+
+#snapcall-popin {
+  position: fixed;
+  z-index: 900;
+  bottom: 3px;
+  right: 3px;
+  width: 300px;
+  border: 1px solid #E5E4E2;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -o-border-radius: 3px;
+  background: white;
+  color: black;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+}
+#snapcall-popin .header {
+  border-bottom: 1px solid #E5E4E2;
+  overflow: auto;
+}
+#snapcall-popin .header .invite,
+#snapcall-popin .header .controls {
+  float: left;
+  padding: 12px 12px;
+}
+#snapcall-popin .header .controls {
+  width: 46px;
+}
+#snapcall-popin .header .logo {
+  float: left;
+  height: 42px;
+  width: 70px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
+#snapcall-popin .header .controls {
+  text-align: right;
+}
+#snapcall-popin .header .controls span:nth-of-type(1) {
+  margin-right: 10px;
+}
+#snapcall-popin .header .controls span:hover {
+  cursor: pointer;
+}
+#snapcall-popin .header .invite {
+  width: calc(136px);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#snapcall-popin .body {
+  display: none;
+  text-align: center;
+  padding: 15px 15px;
+}
+#snapcall-popin .body .rating {
+  display: none;
+  padding: 15px 15px;
+}
+#snapcall-popin .body .rating img {
+  width: 30px;
+}
+#snapcall-popin .body .dialog {
+  padding: 10px 15px;
+}
+#snapcall-popin .body .dialog .txt-small,
+#snapcall-popin .body .dialog .txt-medium,
+#snapcall-popin .body .dialog .txt-big,
+#snapcall-popin .body .dialog .txt-giant {
+  padding: 5px 15px;
+}
+#snapcall-popin .body .dialog .txt-small {
+  font-size: 11px;
+}
+#snapcall-popin .body .dialog .txt-medium {
+  font-size: 14px;
+}
+#snapcall-popin .body .dialog .txt-big {
+  font-size: 17px;
+}
+#snapcall-popin .body .dialog .txt-giant {
+  font-size: 45px;
+}

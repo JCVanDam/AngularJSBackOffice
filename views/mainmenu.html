@@ -1,0 +1,53 @@
+<div ng-controller="mainmenuCtrl">
+	<div class="sidebar-unfold" ng-show="display">
+		<ul>
+			<li>
+				<span class="fa fa-bars"></span>
+				Menu
+			</li>
+		</ul>
+		<div class="sidebar-unfold-tagname">
+			GERER
+		</div>
+		<ul>
+			<a href="#/widget/list"><li>
+				<img src="https://admin.snapcall.io/img/icon_white.svg" />
+				Boutons d'appels
+			</li></a>
+		</ul>
+		<div class="sidebar-unfold-tagname">
+			RAPPORTS
+		</div>
+		<ul>
+			<a href="#/dashboard"><li>
+				<span class="fa fa-pie-chart"></span>
+				Tableau de bord
+			</li></a>
+			<a href="#/currentCall"><li>
+				<span class="fa fa-spinner"></span>
+				Appels en cours
+			</li></a>
+			<a href="#/call/history"><li>
+				<span class="fa fa-circle"></span>
+				Historique d'appels
+			</li></a>
+		</ul>
+		<div class="sidebar-unfold-tagname">
+			COMPTE
+		</div>
+		<ul>
+			<a href="#/api" ng-show="access"><li>
+				<span class="fa fa-plug"></span>
+				API
+			</li></a>
+			<a href="#/parameter"><li>
+				<span class="fa fa-cog"></span>
+				Param&egrave;tres
+			</li></a>
+			<a href="#/user/logout"><li>
+				<span class="fa fa-power-off"></span>
+				D&eacute;connexion
+			</li></a>
+		</ul>
+	</div>
+</div>

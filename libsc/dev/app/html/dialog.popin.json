@@ -1,0 +1,18 @@
+{
+	"dialog": {
+		"message": {
+			"service": "Snapcall",
+			"invite": "[big]En cliquant, vous serez mis en relation gratuitement avec un t&eacute;l&eacute;conseiller.[/][medium]Le service est disponible du lundi au vendredi de 07h à 20h[/][small]* hors jours f&eacute;ri&eacute;s et hors &eacute;v&egrave;nements exceptionnels[/]",
+			"closed": "[big]Ce service est actuellement ferm&eacute.[/][medium]Le service est disponible du lundi au vendredi de 07h à 20h[/]",
+			"dialing": "[big]Connection ...[/]",
+			"rating": "[big]Votre avis nous int&eacute;resse.[/][medium]Contact TER vous remercie de votre appel.[/]",
+			"timer": "[big]00:00[/]"
+		},
+		"error": {
+			"channel": "[big]Cannaux occup&eacute;s[/][medium]Tous les agents sont en ligne, Nous vous invitons a r&eacute;essayer dans quelques minutes.[/]",
+			"browser": "[big]Pour accéder à cette fonctionnalité il est recommandé d'utiliser les navigateurs suivants[/][medium][img]https://github.com/alrra/browser-logos/raw/master/chrome/chrome_256x256.png[/img][img]https://github.com/alrra/browser-logos/raw/master/firefox/firefox_256x256.png[/img][img]https://github.com/alrra/browser-logos/raw/master/opera/opera_256x256.png[/img]][/]",
+			"connect": "[big]Echec de la connection[/][medium]Une erresur est survenue lors de la connection au service. Nous vous invitons a r&eacute;essayer dans quelques minutes.[/]",
+			"timeout": "[big]Temps d'attente expir&eacute;[/][medium]Merci de v&eacute;rifier l'activation de votre micro et votre connexion Internet.[/]"
+		}
+	}
+}

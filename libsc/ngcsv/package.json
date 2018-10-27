@@ -1,0 +1,77 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "ngcsv",
+        "scope": null,
+        "escapedName": "ngcsv",
+        "name": "ngcsv",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Applications/MAMP/htdocs"
+    ]
+  ],
+  "_from": "ngcsv@latest",
+  "_id": "ngcsv@0.2.0",
+  "_inCache": true,
+  "_location": "/ngcsv",
+  "_nodeVersion": "4.4.3",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/ngcsv-0.2.0.tgz_1461747569647_0.5486831169109792"
+  },
+  "_npmUser": {
+    "name": "ariadng",
+    "email": "ariadng@gmail.com"
+  },
+  "_npmVersion": "2.15.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "ngcsv",
+    "scope": null,
+    "escapedName": "ngcsv",
+    "name": "ngcsv",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/ngcsv/-/ngcsv-0.2.0.tgz",
+  "_shasum": "165f9165e2ac6fa26cf9b6a985cfb96f4e024805",
+  "_shrinkwrap": null,
+  "_spec": "ngcsv",
+  "_where": "/Applications/MAMP/htdocs",
+  "author": {
+    "name": "Aria Dhanang",
+    "url": "http://dhanang.me"
+  },
+  "dependencies": {},
+  "description": "An AngularJS service to handle CSV files with ease and convert to JSON.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "165f9165e2ac6fa26cf9b6a985cfb96f4e024805",
+    "tarball": "https://registry.npmjs.org/ngcsv/-/ngcsv-0.2.0.tgz"
+  },
+  "gitHead": "c57fd3b4d5bac05254d89f987241d88325b521e9",
+  "keywords": [
+    "angularjs",
+    "csv",
+    "json"
+  ],
+  "maintainers": [
+    {
+      "name": "ariadng",
+      "email": "ariadng@gmail.com"
+    }
+  ],
+  "name": "ngcsv",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "scripts": {},
+  "version": "0.2.0"
+}

@@ -1,0 +1,1440 @@
+<div class="bar" ng-controller="apiCtrl">
+	<div ng-include="'views/mainmenu.html'"></div>
+	<div class="page">
+		<div class="page-header-gen">
+			<div class="page-header-wrapper">
+				<span class="fa fa-plug"></span>API
+				<div class="page-header-text">Authentification et requ&ecirc;tes</div>
+			</div>
+		</div>
+		<div class="page-nav">
+			<div class="page-nav-wrapper">
+				<div class="nav">
+					<span class="fa fa-home"></span>Accueil<span class="fa fa-angle-right"></span>API<span class="fa fa-angle-right"></span>Authentification et requ&ecirc;tes
+				</div>
+			</div>
+		</div>
+		<div class="page-wrapper">
+			<div class="page-row">
+				<div class="page-col" style="width: 300px">
+					<div class="panel">
+						<div class="ux-menu-title">API</div>
+						<ul class="ux-menu-list">
+							<li ng-class="selectToggle.identification" ng-click="toggle('identification')"><span class="fa fa-lock"></span>Identifiants</li>
+							<li ng-class="selectToggle.authentication" ng-click="toggle('authentication')"><span class="fa fa-server"></span>Authentification et requ&ecirc;tes</li>
+							<li ng-class="selectToggle.user" ng-click="toggle('user')"><span><img src="img/user.svg" width="15px" heigth="15px"></span>Utilisateur</li>
+							<li ng-class="selectToggle.widgets" ng-click="toggle('widgets')"><span class="fa fa-cube"></span>Boutons</li>
+							<li ng-class="selectToggle.statistics" ng-click="toggle('statistics')"><span class="fa fa-bar-chart"></span>Statistiques</li>
+						</ul>
+					</div>
+				</div>
+				<div class="page-col" style="width: calc(100% - 300px);">
+					<div class="panel" ng-show="block.identification">
+						<div class="panel-header">
+							<div class="title">
+								Identifiants
+							</div>
+						</div>
+						<div class="panel-body">
+							<p>API Key</p>
+							<p class="codeblock">{{api_key}}</p>
+							<p>API Secret</p>
+							<p class="codeblock">{{api_secret}}</p>
+							<div class="ux-txt-info">
+							Vous souhaitez changer vos identifiants API ? Cliquez sur le bouton ci-dessous. N'oubliez pas de les mettre &agrave; jour dans vos applications !
+							<br /><br />
+							<button id="resetAPICredentials" class="ux-input ux-input-input mhover" ng-click="resetAPI(0)">
+								R&eacute;g&eacute;n&eacute;rer de nouveaux identifiants
+							</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="panel" ng-show="block.authentication">
+						<div class="panel-header">
+							<div class="title">
+							Authentification et requ&ecirc;tes
+							</div>
+						</div>
+						<div class="panel-body">
+							<h2>Requetes HTTP</h2>
+							<p>
+								Afin d'executer une requ&ecirc;te via l'API Snapcall, vous devrez passer l'<b>api_key</b> et l'<b>api_secret</b> en m&ecirc;me temps que le reste de vos param&egrave;tres.
+								<br />
+								Toutes les requ&ecirc;tes envoy&eacute;es &agrave; l'API Snapcall doivent &ecirc;tre de type <b>HTTP POST</b>.
+								<br />
+								Le r&eacute;sultat de vos requ&ecirc;tes vous sera renvoy&eacute; au format <b>JSON</b>.
+								<br />
+								<br />
+								Les requ&ecirc;tes vers l'API peuvent avoir la forme suivante:
+								<br />
+								<p class="codeblock">curl [-d "&#60;parameter&#62;=&#60;value&#62;"]{0,} &#60;URI&#62;</p>
+								La r&eacute;ponse de l'API se presentera sous cette forme:
+								<br />
+								<p class="codeblock">
+									[index_key: {
+									</br>
+									&nbsp;key_1: "value",
+									</br>
+									&nbsp;key_2: "value",
+									</br>
+									&nbsp;...
+									</br>
+									}]
+								</p>
+							</p>
+							<h2>Environnement</h2>
+							<p>
+								Pour gagner du temps, sauvegardez vos clefs directement dans l'environnement et utilisez les exemples pour tester notre API.
+							</p>
+							<p class="codeblock">$> export SNAPI_KEY={{api_key}}</p>
+							<p class="codeblock">$> export SNAPI_SECRET={{api_secret}}</p>
+						</div>
+					</div>
+					<div class="panel" ng-show="block.user">
+						<div class="panel-header">
+							<div class="title">Utilisateur</div>
+						</div>
+						<div class="panel-body">
+							<h2>Connection</h2>
+							<p>Se connecter sur un profil utilisateur.</p>
+							<p class="codeblock">POST http://api.snapcall.io/user/login</p>
+							<h3>Param&egrave;tres d'entr&eacute;e</h3>
+							<div class="data-table">
+								<table>
+									<tr>
+										<td>Nom</td>
+										<td>Type</td>
+										<td>Mandatoire</td>
+										<td>Description</td>
+										<td>Exemple</td>
+									</tr>
+									<tr>
+										<td>email</td>
+										<td>Email</td>
+										<td>Oui</td>
+										<td>Email de l'utilisateur</td>
+										<td>hello@snapcall.io</td>
+									</tr>
+									<tr>
+										<td>password</td>
+										<td>Password</td>
+										<td>Oui</td>
+										<td>Mot de passe de l'utilisateur</td>
+										<td>snapcall1234</td>
+									</tr>
+								</table>
+							</div>
+							<h3>Valeur de retour</h3>
+							<p>Retourne NULL si aucun utilisateur n'est trouv&eacute;</p>
+							<p class="codeblock">
+								{
+								</br>
+				    		&nbsp;"user_name": "Snap Call",
+								</br>
+				    		&nbsp;"user_access": "admin",
+								</br>
+				    		&nbsp;"user_api_access": "0",
+								</br>
+				    		&nbsp;"api_key": "670xb225a611xxD289a70ae03a1ae33f",
+								</br>
+				    		&nbsp;"api_secret": "6x035b395a78xx1e789a70ae03a1ae33f"
+								</br>
+								}
+							</p>
+							<h2>Cr&eacute;er un nouveau compte.</h2>
+							<p>Cr&eacute;er un nouveau compte Snapcall</p>
+							<p class="codeblock">
+								POST http://api.snapcall.io/user/create
+							</p>
+							<h3>Param&egrave;tres d'entr&eacute;e</h3>
+							<div class="data-table">
+								<table>
+									<tr>
+										<td>Nom</td>
+										<td>Type</td>
+										<td>Mandatoire</td>
+										<td>Description</td>
+										<td>Exemple</td>
+									</tr>
+									<tr>
+										<td>email</td>
+										<td>Email</td>
+										<td>Oui</td>
+										<td>Email de l'utilisateur</td>
+										<td>hello@snapcall.io</td>
+									</tr>
+									<tr>
+										<td>password</td>
+										<td>Password</td>
+										<td>Oui</td>
+										<td>Mot de passe de l'utilisateur</td>
+										<td>snapcall1234</td>
+									</tr>
+									<tr>
+										<td>name</td>
+										<td>String</td>
+										<td>Oui</td>
+										<td>Nom complet de l'utilisateur</td>
+										<td>Jean-Michel Snapcall</td>
+									</tr>
+									<tr>
+										<td>company_name</td>
+										<td>String</td>
+										<td>Oui</td>
+										<td>Nom de la soci&eacute;t&eacute;</td>
+										<td>Snapcall</td>
+									</tr>
+									<tr>
+										<td>access</td>
+										<td>Enum('admin','agent')</td>
+										<td>Oui</td>
+										<td>Niveau de droit et de privil&egrave;ge de l'utilisateur sur le BackOffice et l'API</td>
+										<td>Admin</td>
+									</tr>
+								</table>
+							</div>
+							<h3>Valeur de retour</h3>
+							Retourne TRUE si la cr&eacute;ation s'est d&eacute;roul&eacute; normalement, retourne FALSE autrement.
+
+							<h2>Mettre a jour l'email</h2>
+							<p>Changer l'adresse email d'un compte existant</p>
+							<p class="codeblock">POST http://api.snapcall.io/user/email</p>
+							<h3>Param&egrave;tres d'entr&eacute;e</h3>
+							<div class="data-table">
+								<table>
+									<tr>
+										<td>Nom</td>
+										<td>Type</td>
+										<td>Mandatoire</td>
+										<td>Description</td>
+										<td>Exemple</td>
+									</tr>
+									<tr>
+										<td>email</td>
+										<td>Email</td>
+										<td>Oui</td>
+										<td>Email de l'utilisateur</td>
+										<td>hello@snapcall.io</td>
+									</tr>
+									<tr>
+										<td>api_key</td>
+										<td>String</td>
+										<td>Oui</td>
+										<td>Clef alphanumeric de l'API</td>
+										<td>4fa8198954f011e7babfa860b6053f87</td>
+									</tr>
+									<tr>
+										<td>api_secret</td>
+										<td>String</td>
+										<td>Oui</td>
+										<td>Clef secrete alphanumeric de l'API</td>
+										<td>abxhr60b6053f874fa81989xxf011e7b</td>
+									</tr>
+								</table>
+							</div>
+							<h3>Valeur de retour</h3>
+							Retourne TRUE si l'adresse a &eacute;t&eacute; mise &agrave; jour, retourne FALSE autrement.
+
+							<h2>Mettre &agrave; jour le mot de passe</h2>
+							<p>Changer le mot de passe d'un compte existant</p>
+							<p class="codeblock">POST http://api.snapcall.io/user/password</p>
+							<h3>Param&egrave;tres d'entr&eacute;e</h3>
+							<div class="data-table">
+								<table>
+									<tr>
+										<td>Nom</td>
+										<td>Type</td>
+										<td>Mandatoire</td>
+										<td>Description</td>
+										<td>Exemple</td>
+									</tr>
+									<tr>
+										<td>password</td>
+										<td>Password</td>
+										<td>Oui</td>
+										<td>Mot de passe actuel de l'utilisateur</td>
+										<td>snapcall1234</td>
+									</tr>
+									<tr>
+										<td>password_new</td>
+										<td>Password</td>
+										<td>Oui</td>
+										<td>Nouveau mot de passe de l'utilisateur</td>
+										<td>1234snapcall</td>
+									</tr>
+									<tr>
+										<td>password_conf</td>
+										<td>Password</td>
+										<td>Oui</td>
+										<td>Confirmation du nouveau mot de passe de l'utilisateur</td>
+									<td>1234snapcall</td>
+									</tr>
+										<tr>
+										<td>api_key</td>
+										<td>String</td>
+										<td>Oui</td>
+										<td>Clef alphanumeric de l'API</td>
+										<td>4fa8198954f011e7babfa860b6053f87</td>
+									</tr>
+									<tr>
+										<td>api_secret</td>
+										<td>String</td>
+										<td>Oui</td>
+										<td>Clef secrete alphanumeric de l'API</td>
+										<td>abxhr60b6053f874fa81989xxf011e7b</td>
+									</tr>
+								</table>
+							</div>
+							<h3>Valeur de retour</h3>
+							Retourne TRUE si le mot de passe a &eacute;t&eacute; mise &agrave; jour, retourne FALSE autrement.
+
+							<h2>Changer les identifiants de l'API</h2>
+							<p>Changer les identifiants de l'API pour un compte existant</p>
+							<p class="codeblock">POST http://api.snapcall.io/user/reset</p>
+							<h3>Param&egrave;tres d'entr&eacute;e</h3>
+							<div class="data-table">
+								<table>
+									<tr>
+										<td>Nom</td>
+										<td>Type</td>
+										<td>Mandatoire</td>
+										<td>Description</td>
+										<td>Exemple</td>
+									</tr>
+									<tr>
+										<td>api_key</td>
+										<td>String</td>
+										<td>Oui</td>
+										<td>Clef alphanumeric de l'API</td>
+										<td>4fa8198954f011e7babfa860b6053f87</td>
+									</tr>
+									<tr>
+										<td>api_secret</td>
+										<td>String</td>
+										<td>Oui</td>
+										<td>Clef secrete alphanumeric de l'API</td>
+										<td>abxhr60b6053f874fa81989xxf011e7b</td>
+									</tr>
+								</table>
+							</div>
+							<h3>Valeur de retour</h3>
+							Retourne NULL si les identifiants API fournit n'existe pas.
+							<p class="codeblock"><b>
+								{
+								</br>
+				    		&nbsp;"api_key": "4fa81989hJk121e7babfa860b6053f87",
+								</br>
+								&nbsp;"api_secret": "Xbh21r60b6053pOLK881989xxf011e7b"
+								</br>
+								}
+							</p>
+
+							<h2>Obtenir les informations relatives a l'utilisateur</h2>
+							<p>Obtenir les informations basiques relatives a l'utilisateur</p>
+							<p class="codeblock">POST http://api.snapcall.io/user/infos</p>
+							<h3>Param&egrave;tres d'entr&eacute;e</h3>
+							<div class="data-table">
+								<table>
+									<tr>
+										<td>Nom</td>
+										<td>Type</td>
+										<td>Mandatoire</td>
+										<td>Description</td>
+										<td>Exemple</td>
+									</tr>
+									<tr>
+										<td>api_key</td>
+										<td>String</td>
+										<td>Oui</td>
+										<td>Clef alphanumeric de l'API</td>
+										<td>4fa8198954f011e7babfa860b6053f87</td>
+									</tr>
+									<tr>
+										<td>api_secret</td>
+										<td>String</td>
+										<td>Oui</td>
+										<td>Clef secrete alphanumeric de l'API</td>
+										<td>abxhr60b6053f874fa81989xxf011e7b</td>
+									</tr>
+								</table>
+								</div>
+								<h3>Valeur de retour</h3>
+								Retourne NULL si les identifiants API fournit n'existe pas.
+								<p class="codeblock">
+									{
+									</br>
+					    		&nbsp;"user_email": "hello@snapcall.io",
+									</br>
+					    		&nbsp;"user_name": "Snap Call",
+									</br>
+					    		&nbsp;"user_access": "admin",
+									</br>
+					    		&nbsp;"company_name": "Seampl"
+									</br>
+									}
+								</p>
+								</div>
+							</div>
+
+							<div class="panel" ng-show="block.widgets">
+								<div class="panel-header">
+									<div class="title">Boutons</div>
+								</div>
+								<div class="panel-body">
+									<h2>Cr&eacute;er un bouton</h2>
+									<p>Cr&eacute;er un nouveau bouton.</p>
+									<h3>URI</h3>
+									<p class="codeblock"><b>POST http://api.snapcall.io/widget/create</p>
+									<h3>Param&egrave;tres d'entr&eacute;e</h3>
+									<div class="data-table">
+										<table>
+											<tr>
+												<td>Nom</td>
+												<td>Type</td>
+												<td>Mandatoire</td>
+												<td>Description</td>
+												<td>Exemple</td>
+											</tr>
+											<tr>
+												<td>api_key</td>
+												<td>String</td>
+												<td>Oui</td>
+												<td>Clef alphanumeric de l'API</td>
+												<td>4fa8198954f011e7babfa860b6053f87</td>
+											</tr>
+											<tr>
+												<td>api_secret</td>
+												<td>String</td>
+												<td>Oui</td>
+												<td>Clef secrete alphanumeric de l'API</td>
+												<td>abxhr60b6053f874fa81989xxf011e7b</td>
+											</tr>
+											<tr>
+												<td>name</td>
+												<td>string</td>
+												<td>Oui</td>
+												<td>Le nom du widget. Uniquement visible depuis le backoffice.</td>
+												<td>Accueil Snapcall</td>
+											</tr>
+											<tr>
+												<td>brand</td>
+												<td>string</td>
+												<td>Oui</td>
+												<td>Le nom de la marque.</td>
+												<td>Snapcall</td>
+											</tr>
+											<tr>
+												<td>call_id</td>
+												<td>int</td>
+												<td>Oui</td>
+												<td>Le num&eacute;ro de t&eacute;l&eacute;phone &agrave; faire sonner.</td>
+												<td>0123456789</td>
+											</tr>
+											<tr>
+												<td>caller_id</td>
+												<td>int</td>
+												<td>Non</td>
+												<td>Le num&eacute;ro de t&eacute;l&eacute;phone personnalis&eacute; &agrave; pr&eacute;senter</td>
+												<td>0123456789</td>
+											</tr>
+											<tr>
+												<td>routing</td>
+												<td>Enum('pstn','webrtc')</td>
+												<td>Non</td>
+												<td>Si "pstn" est s&eacute;l&eacute;ctionn&eacute;, l'appel sonnera sur le call_id s&eacute;l&eacute;ctionn&eacute; autrement il sonnera dans une file d'attente</td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>service</td>
+												<td>string</td>
+												<td>Non</td>
+												<td>Le nom du service.</td>
+												<td>Service Apres-Vente</td>
+											</tr>
+											<tr>
+												<td>product</td>
+												<td>string</td>
+												<td>Non</td>
+												<td>Le nom du produit.</td>
+												<td>Widget Snapcall</td>
+											</tr>
+											<tr>
+												<td>type</td>
+												<td>Enum('')</td>
+												<td>Non</td>
+												<td>Le type de widget &agrave; int&eacute;grer. Les valeurs possibles sont: button, buttontxt, buttonpop, callbar, popin</td>
+												<td>callbar</td>
+											</tr>
+											<tr>
+												<td>schedule</td>
+												<td>Array</td>
+												<td>Non</td>
+												<td>Les horaires d'ouverture de votre widget (pour chaque jour de la semaine).</td>
+												<td>09:00-19:30;09:00-19:30;09:00-19:30;09:00-19:30;09:00-19:30;00:00-00:00;00:00-00:00</td>
+											</tr>
+											<tr>
+												<td>context</td>
+												<td>Array</td>
+												<td>Non</td>
+												<td>L'ensemble des balises HTML sur lesquelles les utilisateurs de votre page web ont cliqu&eacute; et leurs cookies.</td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>widget_color_bg</td>
+												<td>string</td>
+												<td>Non</td>
+												<td>Couleur d'arri&egrave;re plan du bouton d'appel en hexadecimal</td>
+												<td>#000000</td>
+											</tr>
+											<tr>
+												<td>widget_color_fg</td>
+												<td>string</td>
+												<td>Non</td>
+												<td>Couleur de premier plan du bouton d'appel en hexadecimal</td>
+												<td>#FFFFFF</td>
+											</tr>
+											<tr>
+												<td>widget_size</td>
+												<td>int</td>
+												<td>Non</td>
+												<td>Taille du bouton d'appel en pixels</td>
+												<td>120</td>
+											</tr>
+											<tr>
+												<td>msg_widget_invite</td>
+												<td>string</td>
+												<td>Non</td>
+												<td>Message d'invitation &agrave; l'appel</td>
+												<td>Besoin d'information ? Appelez-nous gratuitement.</td>
+											</tr>
+											<tr>
+												<td>msg_widget_ongoing</td>
+												<td>string</td>
+												<td>Non</td>
+												<td>Message d'appel en cours</td>
+												<td>Appel en cours ...</td>
+											</tr>
+											<tr>
+												<td>msg_widget_closed</td>
+												<td>string</td>
+												<td>Non</td>
+												<td>Message de fermeture</td>
+												<td>Service actuellement fermé</td>
+											</tr>
+											<tr>
+												<td>msg_widget_rate</td>
+												<td>string</td>
+												<td>Non</td>
+												<td>Message d'&eacute;valuation</td>
+												<td>Donnez une note a cet appel</td>
+											</tr>
+											<tr>
+												<td>msg_hosted_title</td>
+												<td>string</td>
+												<td>Non</td>
+												<td>Titre de la page h&eacute;berg&eacute;e</td>
+												<td>Appelez-nous</td>
+											</tr>
+											<tr>
+												<td>msg_hosted_invite</td>
+												<td>string</td>
+												<td>Non</td>
+												<td>Message d'invitation &agrave; l'appel de la page h&eacute;berg&eacute;e</td>
+												<td>En cliquant vous serez mis en relation gratuitement avec un conseiller</td>
+											</tr>
+											<tr>
+												<td>opt_closed</td>
+												<td>bool</td>
+												<td>Non</td>
+												<td>Affiche le bouton hors des horraires d'ourvertures</td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>opt_browser</td>
+												<td>bool</td>
+												<td>Non</td>
+												<td>En cas d'incompatibilité du navigateur, 'Y' pour afficher un message d'erreur, 'N' pour masquer le widget</td>
+												<td>Y</td>
+											</tr>
+											<tr>
+												<td>opt_os</td>
+												<td>bool</td>
+												<td>Non</td>
+												<td>En cas d'incompatibilité du systeme d'exploitation, 'Y' pour activer l'appel GSM natif, 'N' pour masquer le widget</td>
+												<td>Y</td>
+											</tr>
+											<tr>
+												<td>opt_secure</td>
+												<td>char</td>
+												<td>Non</td>
+												<td>Si le site web est non sécurisée (non https), 'Y' pour rediriger vers une page hébergée sécurisée, 'N' pour masquer le widget</td>
+												<td>Y</td>
+											</tr>
+											<tr>
+												<td>opt_accessibility</td>
+												<td>bool</td>
+												<td>Non</td>
+												<td>Notice d'accessibilité, 'Y' pour l'activer, 'N' pour la désactiver.</td>
+												<td>Y</td>
+											</tr>
+											<tr>
+												<td>opt_log</td>
+												<td>bool</td>
+												<td>Non</td>
+												<td></td>
+												<td></td>
+											</tr>
+										</table>
+									</div>
+									<h3>Param&egrave;tres de retour</h3>
+									<p>Renvoie TRUE si l'op&eacute;ration a r&eacute;ussie, FALSE sinon.</p>
+									<h2>Modifier un bouton</h2>
+									<p>Modifie un bouton existant</p>
+									<p class="codeblock">
+										POST http://api.snapcall.io/widget/update
+									</p>
+									<h3>Param&egrave;tres d'entr&eacute;e</h3>
+									<div class="data-table">
+										<table>
+											<tr>
+												<td>Nom</td>
+												<td>Type</td>
+												<td>Mandatoire</td>
+												<td>Description</td>
+												<td>Exemple</td>
+											</tr>
+											<tr>
+												<td>api_key</td>
+												<td>String</td>
+												<td>Oui</td>
+												<td>Clef alphanumeric de l'API</td>
+												<td>4fa8198954f011e7babfa860b6053f87</td>
+											</tr>
+											<tr>
+												<td>api_secret</td>
+												<td>String</td>
+												<td>Oui</td>
+												<td>Clef secrete alphanumeric de l'API</td>
+												<td>abxhr60b6053f874fa81989xxf011e7b</td>
+											</tr>
+											<tr>
+												<td>name</td>
+												<td>string</td>
+												<td>Oui</td>
+												<td>Le nom du widget. Uniquement visible depuis le backoffice.</td>
+												<td>Accueil Snapcall</td>
+											</tr>
+											<tr>
+												<td>brand</td>
+												<td>string</td>
+												<td>Oui</td>
+												<td>Le nom de la marque.</td>
+												<td>Snapcall</td>
+											</tr>
+											<tr>
+												<td>call_id</td>
+												<td>int</td>
+												<td>Oui</td>
+												<td>Le num&eacute;ro de t&eacute;l&eacute;phone &agrave; faire sonner.</td>
+												<td>0123456789</td>
+											</tr>
+											<tr>
+												<td>bid_id</td>
+												<td>int</td>
+												<td>Oui</td>
+												<td>L'identifiant du bouton.</td>
+												<td>4fa81f011e7bab6053f87</td>
+											</tr>
+											<tr>
+												<td>caller_id</td>
+												<td>int</td>
+												<td>Non</td>
+												<td>Le num&eacute;ro de t&eacute;l&eacute;phone personnalis&eacute; &agrave; pr&eacute;senter</td>
+												<td>0123456789</td>
+											</tr>
+											<tr>
+												<td>routing</td>
+												<td>Enum('pstn','webrtc')</td>
+												<td>Non</td>
+												<td>Si "pstn" est s&eacute;l&eacute;ctionn&eacute;, l'appel sonnera sur le call_id s&eacute;l&eacute;ctionn&eacute; autrement il sonnera dans une file d'attente</td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>service</td>
+												<td>string</td>
+												<td>Non</td>
+												<td>Le nom du service.</td>
+												<td>Service Apres-Vente</td>
+											</tr>
+											<tr>
+												<td>product</td>
+												<td>string</td>
+												<td>Non</td>
+												<td>Le nom du produit.</td>
+												<td>Widget Snapcall</td>
+											</tr>
+											<tr>
+												<td>type</td>
+												<td>Enum('')</td>
+												<td>Non</td>
+												<td>Le type de widget &agrave; int&eacute;grer. Les valeurs possibles sont: button, buttontxt, buttonpop, callbar, popin</td>
+												<td>callbar</td>
+											</tr>
+											<tr>
+												<td>schedule</td>
+												<td>Array</td>
+												<td>Non</td>
+												<td>Les horaires d'ouverture de votre widget (pour chaque jour de la semaine).</td>
+												<td>09:00-19:30;09:00-19:30;09:00-19:30;09:00-19:30;09:00-19:30;00:00-00:00;00:00-00:00</td>
+											</tr>
+											<tr>
+												<td>context</td>
+												<td>Array</td>
+												<td>Non</td>
+												<td>L'ensemble des balises HTML sur lesquelles les utilisateurs de votre page web ont cliqu&eacute; et leurs cookies.</td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>widget_color_bg</td>
+												<td>string</td>
+												<td>Non</td>
+												<td>Couleur d'arri&egrave;re plan du bouton d'appel en hexadecimal</td>
+												<td>#000000</td>
+											</tr>
+											<tr>
+												<td>widget_color_fg</td>
+												<td>string</td>
+												<td>Non</td>
+												<td>Couleur de premier plan du bouton d'appel en hexadecimal</td>
+												<td>#FFFFFF</td>
+											</tr>
+											<tr>
+												<td>widget_size</td>
+												<td>int</td>
+												<td>Non</td>
+												<td>Taille du bouton d'appel en pixels</td>
+												<td>120</td>
+											</tr>
+											<tr>
+												<td>msg_widget_invite</td>
+												<td>string</td>
+												<td>Non</td>
+												<td>Message d'invitation &agrave; l'appel</td>
+												<td>Besoin d'information ? Appelez-nous gratuitement.</td>
+											</tr>
+											<tr>
+												<td>msg_widget_ongoing</td>
+												<td>string</td>
+												<td>Non</td>
+												<td>Message d'appel en cours</td>
+												<td>Appel en cours ...</td>
+											</tr>
+											<tr>
+												<td>msg_widget_closed</td>
+												<td>string</td>
+												<td>Non</td>
+												<td>Message de fermeture</td>
+												<td>Service actuellement fermé</td>
+												</tr>
+												<tr>
+													<td>msg_widget_rate</td>
+													<td>string</td>
+													<td>Non</td>
+													<td>Message d'&eacute;valuation</td>
+													<td>Donnez une note a cet appel</td>
+												</tr>
+												<tr>
+													<td>msg_hosted_title</td>
+													<td>string</td>
+													<td>Non</td>
+													<td>Titre de la page h&eacute;berg&eacute;e</td>
+													<td>Appelez-nous</td>
+												</tr>
+												<tr>
+													<td>msg_hosted_invite</td>
+													<td>string</td>
+													<td>Non</td>
+													<td>Message d'invitation &agrave; l'appel de la page h&eacute;berg&eacute;e</td>
+													<td>En cliquant vous serez mis en relation gratuitement avec un conseiller</td>
+												</tr>
+												<tr>
+													<td>opt_closed</td>
+													<td>bool</td>
+													<td>Non</td>
+													<td>Affiche le bouton hors des horraires d'ourvertures</td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>opt_browser</td>
+													<td>bool</td>
+													<td>Non</td>
+													<td>En cas d'incompatibilité du navigateur, 'Y' pour afficher un message d'erreur, 'N' pour masquer le widget</td>
+													<td>Y</td>
+												</tr>
+												<tr>
+													<td>opt_os</td>
+													<td>bool</td>
+													<td>Non</td>
+													<td>En cas d'incompatibilité du systeme d'exploitation, 'Y' pour activer l'appel GSM natif, 'N' pour masquer le widget</td>
+													<td>Y</td>
+												</tr>
+												<tr>
+													<td>opt_secure</td>
+													<td>char</td>
+													<td>Non</td>
+													<td>Si le site web est non sécurisée (non https), 'Y' pour rediriger vers une page hébergée sécurisée, 'N' pour masquer le widget</td>
+													<td>Y</td>
+												</tr>
+												<tr>
+													<td>opt_accessibility</td>
+													<td>bool</td>
+													<td>Non</td>
+													<td>Notice d'accessibilité, 'Y' pour l'activer, 'N' pour la désactiver.</td>
+													<td>Y</td>
+												</tr>
+												<tr>
+													<td>opt_log</td>
+													<td>bool</td>
+													<td>Non</td>
+													<td></td>
+													<td></td>
+												</tr>
+											</table>
+										</div>
+										<h3>Valeur de retour</h3>
+										<p>Renvoie TRUE si l'op&eacute;ration a r&eacute;ussie, FALSE sinon.</p>
+										<h2>Suppresion d'un bouton</h2>
+										<p>Supprime un bouton existant. Le bouton ne sera en réalité pas completement supprimer de la base de donnée il sera seulement désactivé.</p>
+										<p class="codeblock">POST http://api.snapcall.io/widget/delete</p>
+										<div class="data-table">
+											<table>
+												<tr>
+													<td>Nom</td>
+													<td>Type</td>
+													<td>Mandatoire</td>
+													<td>Description</td>
+													<td>Exemple</td>
+												</tr>
+												<tr>
+													<td>api_key</td>
+													<td>String</td>
+													<td>Oui</td>
+													<td>Clef alphanumeric de l'API</td>
+													<td>4fa8198954f011e7babfa860b6053f87</td>
+												</tr>
+												<tr>
+													<td>api_secret</td>
+													<td>String</td>
+													<td>Oui</td>
+													<td>Clef secrete alphanumeric de l'API</td>
+													<td>abxhr60b6053f874fa81989xxf011e7b</td>
+												</tr>
+												<tr>
+													<td>bid_id</td>
+													<td>String</td>
+													<td>Oui</td>
+													<td>Identifiant du bouton</td>
+													<td>4fa81f011e7bab6053f87</td>
+												</tr>
+											</table>
+										</div>
+										<h3>Valeur de retour</h3>
+										<p>Renvoie TRUE si l'op&eacute;ration a r&eacute;ussie, FALSE sinon.</p>
+										<h2>Lire un bouton</h2>
+										<p>Obtenir les inforations sur un bouton existant(le bouton doit n&eacute;cessairement etre actif).</p>
+										<p class="codeblock">POST http://api.snapcall.io/widget/read</p>
+										<div class="data-table">
+											<table>
+												<tr>
+													<td>Nom</td>
+													<td>Type</td>
+													<td>Mandatoire</td>
+													<td>Description</td>
+													<td>Exemple</td>
+												</tr>
+												<tr>
+													<td>api_key</td>
+													<td>String</td>
+													<td>Oui</td>
+													<td>Clef alphanumeric de l'API</td>
+													<td>4fa8198954f011e7babfa860b6053f87</td>
+												</tr>
+												<tr>
+													<td>api_secret</td>
+													<td>String</td>
+													<td>Oui</td>
+													<td>Clef secrete alphanumeric de l'API</td>
+													<td>abxhr60b6053f874fa81989xxf011e7b</td>
+												</tr>
+												<tr>
+													<td>bid_id</td>
+													<td>String</td>
+													<td>Oui</td>
+													<td>Identifiant du bouton</td>
+													<td>4fa81f011e7bab6053f87</td>
+												</tr>
+											</table>
+										</div>
+										<h3>Valeur de retour</h3>
+										<p>Retourne NULL si aucun resultat n'est trouv&eacute;.</p>
+										<p class="codeblock">
+											{
+											</br>
+											&nbsp;"bid_id": "0sJISS3X1wcaj8Dc",
+											</br>
+											&nbsp;"call_id": "0123456789",
+											</br>
+											&nbsp;"caller_id": "100102000048",
+											</br>
+											&nbsp;"name": "Snapcall - Contact",
+											</br>
+											&nbsp;"service": "Snapcall subscription",
+											</br>
+											&nbsp;"brand": "Seampl",
+											</br>
+											&nbsp;"product": "Snapcall widget",
+											</br>
+											&nbsp;"type": "callbar",
+											</br>
+											&nbsp;"schedule": {
+											</br>
+											&nbsp;&nbsp;"Monday": {"morning": ["09:00","12:00"], "afternoon": ["13:00","18:00"]},
+											</br>
+											&nbsp;&nbsp;"Tuesday": {"morning": ["09:00","12:00"], "afternoon": ["13:00","18:00"]},
+											</br>
+											&nbsp;&nbsp;"Wednesday": {"morning": ["09:00","12:00"], "afternoon": ["13:00","18:00"]},
+											</br>
+											&nbsp;&nbsp;"Thursday": {"morning": ["09:00","12:00"], "afternoon": ["13:00","18:00"]},
+											</br>
+											&nbsp;&nbsp;"Friday": {"morning": ["09:00","12:00"], "afternoon": ["13:00","18:00"]},
+											</br>
+											&nbsp;&nbsp;"Saturday": {"morning": ["09:00","12:00"], "afternoon": ["13:00","18:00"]},
+											</br>
+											&nbsp;&nbsp;"Sunday": {"morning": ["09:00","12:00"], "afternoon": ["13:00","18:00"]}
+											},
+											</br>
+											&nbsp;"context": {
+											</br>
+											&nbsp;&nbsp;"tags": [],
+											</br>
+											&nbsp;&nbsp;"cookies": []
+											</br>
+											},
+											</br>
+											&nbsp;"widget_color_bg": "#0000ff",
+											</br>
+											&nbsp;"widget_color_fg": "#ffffff",
+											</br>
+											&nbsp;"widget_size": "160",
+											</br>
+											&nbsp;"msg_widget_invite": "Need information ? Call us for free !",
+											</br>
+											&nbsp;"msg_widget_ongoing": "Ongoing",
+											</br>
+											&nbsp;"msg_widget_closed": "Service closed",
+											</br>
+											&nbsp;"msg_widget_rate": "Rate this call",
+											</br>
+											&nbsp;"msg_hosted_title": "Call for free",
+											</br>
+											&nbsp;"msg_hosted_invite": "Get in touch with one of our experts",
+											</br>
+											&nbsp;"bg_hosted_base64": null,
+											</br>
+											&nbsp;"opt_closed": "1",
+											</br>
+											&nbsp;"opt_browser": "1",
+											</br>
+											&nbsp;"opt_os": "1",
+											</br>
+											&nbsp;"opt_secure": "1",
+											</br>
+											&nbsp;"opt_accessibility": "1",
+											</br>
+											&nbsp;"opt_log": "1"
+											</br>
+											}
+										</p>
+										<h2>List des boutons</h2>
+										<p>Obtenir la liste complete des boutons existants.</p>
+										<p class="codeblock"><b>POST http://api.snapcall.io/widget/list</p>
+										<h3>Param&egrave;tres d'entr&eacute;e</h3>
+										<div class="data-table">
+											<table>
+												<tr>
+													<td>Parametre</td>
+													<td>Type</td>
+													<td>Mandatoire</td>
+													<td>Description</td>
+													<td>Exemple</td>
+												</tr>
+												<tr>
+													<td>api_key</td>
+													<td>String</td>
+													<td>Oui</td>
+													<td>Clef alphanumeric de l'API</td>
+													<td>4fa8198954f011e7babfa860b6053f87</td>
+												</tr>
+												<tr>
+													<td>api_secret</td>
+													<td>String</td>
+													<td>Oui</td>
+													<td>Clef secrete alphanumeric de l'API</td>
+													<td>abxhr60b6053f874fa81989xxf011e7b</td>
+												</tr>
+											</table>
+										</div>
+										<h3>Valeur de retour</h3>
+										<p>Retourne NULL si aucun resultat n'est trouv&eacute;.</p>
+										<p class="codeblock">
+										[{
+										</br>
+										&nbsp;"bid_id": "0sJISS3X1wcaj8Dc",
+										</br>
+										&nbsp;"call_id": "0123456789",
+										</br>
+										&nbsp;"caller_id": "100102000048",
+										</br>
+										&nbsp;"name": "Snapcall - Contact",
+										</br>
+										&nbsp;"service": "Snapcall subscription",
+										</br>
+										&nbsp;"brand": "Seampl",
+										</br>
+										&nbsp;"product": "Snapcall widget",
+										</br>
+										&nbsp;"type": "callbar",
+										</br>
+										&nbsp;"schedule": {
+										</br>
+										&nbsp;&nbsp;"Monday": {"morning": ["09:00","12:00"], "afternoon": ["13:00","18:00"]},
+										</br>
+										&nbsp;&nbsp;"Tuesday": {"morning": ["09:00","12:00"], "afternoon": ["13:00","18:00"]},
+										</br>
+										&nbsp;&nbsp;"Wednesday": {"morning": ["09:00","12:00"], "afternoon": ["13:00","18:00"]},
+										</br>
+										&nbsp;&nbsp;"Thursday": {"morning": ["09:00","12:00"], "afternoon": ["13:00","18:00"]},
+										</br>
+										&nbsp;&nbsp;"Friday": {"morning": ["09:00","12:00"], "afternoon": ["13:00","18:00"]},
+										</br>
+										&nbsp;&nbsp;"Saturday": {"morning": ["09:00","12:00"], "afternoon": ["13:00","18:00"]},
+										</br>
+										&nbsp;&nbsp;"Sunday": {"morning": ["09:00","12:00"], "afternoon": ["13:00","18:00"]}
+										},
+										</br>
+										&nbsp;"context": {
+										</br>
+										&nbsp;&nbsp;"tags": [],
+										</br>
+										&nbsp;&nbsp;"cookies": []
+										</br>
+										&nbsp;},
+										</br>
+										&nbsp;"widget_color_bg": "#0000ff",
+										</br>
+										&nbsp;"widget_color_fg": "#ffffff",
+										</br>
+										&nbsp;"widget_size": "160",
+										</br>
+										&nbsp;"msg_widget_invite": "Need information ? Call us for free !",
+										</br>
+										&nbsp;"msg_widget_ongoing": "Ongoing",
+										</br>
+										&nbsp;"msg_widget_closed": "Service closed",
+										</br>
+										&nbsp;"msg_widget_rate": "Rate this call",
+										</br>
+										&nbsp;"msg_hosted_title": "Call for free",
+										</br>
+										&nbsp;"msg_hosted_invite": "Get in touch with one of our experts",
+										</br>
+										&nbsp;"bg_hosted_base64": null,
+										</br>
+										&nbsp;"opt_closed": "1",
+										</br>
+										&nbsp;"opt_browser": "1",
+										</br>
+										&nbsp;"opt_os": "1",
+										</br>
+										&nbsp;"opt_secure": "1",
+										</br>
+										&nbsp;"opt_accessibility": "1",
+										</br>
+										&nbsp;"opt_log": "1",
+										</br>
+										&nbsp;"closed": "false"
+										</br>
+										&nbsp;},
+										</br>
+										&nbsp;{ ... }
+										</br>
+										&nbsp;]
+										</p>
+									</div>
+								</div>
+								<div class="panel" ng-show="block.statistics">
+									<div class="panel-header">
+										<div class="title">Statistiques</div>
+									</div>
+									<div class="panel-body">
+										<h2>Evaluation</h2>
+										<p>Renvoie le total des evaluations pour un ou tous les boutons tri&eacute;s par valeur.</p>
+										<p class="codeblock">POST http://api.snapcall.io/stat/ratings</p>
+										<h3>Param&egrave;tres d'entr&eacute;e</h3>
+										<div class="data-table">
+											<table>
+												<tr>
+													<td>Nom</td>
+													<td>Type</td>
+													<td>Mandatoire</td>
+													<td>Description</td>
+													<td>Exemple</td>
+												</tr>
+												<tr>
+													<td>api_key</td>
+													<td>String</td>
+													<td>Oui</td>
+													<td>Clef alphanumeric de l'API</td>
+													<td>4fa8198954f011e7babfa860b6053f87</td>
+												</tr>
+												<tr>
+													<td>api_secret</td>
+													<td>String</td>
+													<td>Oui</td>
+													<td>Clef secrete alphanumeric de l'API</td>
+													<td>abxhr60b6053f874fa81989xxf011e7b</td>
+												</tr>
+												<tr>
+													<td>bid_id</td>
+													<td>alnum</td>
+													<td>Non</td>
+													<td>L'identifiant du widget. Si sp&eacute;cifi&eacute;, le volume ne sera calcul&eacute; que pour ce widget.</td>
+													<td>0040xSFoR2e1yJ0l</td>
+												</tr>
+												<tr>
+													<td>start_date</td>
+													<td>datetime</td>
+													<td>Non</td>
+													<td>La date de depart du tri.</td>
+													<td>2017-01-31 14:00:00</td>
+												</tr>
+												<tr>
+													<td>end_date</td>
+													<td>datetime</td>
+													<td>Non</td>
+													<td>La date de fin du tri.</td>
+													<td>2017-01-31 19:00:00</td>
+												</tr>
+											</table>
+										</div>
+										<h3>Valeur de retour</h3>
+										<p class="codeblock">
+										{
+										</br>
+										&nbsp;"1": "7",
+										</br>
+										&nbsp;"2": "14",
+										</br>
+										&nbsp;"3": "140",
+										</br>
+										&nbsp;"4": "288",
+										</br>
+										&nbsp;"5": "288"
+										</br>
+										}
+										</p>
+										<h2>Evaluations moyenne</h2>
+										<p>Renvoie la moyenne des evaluations pour un ou tous les boutons tri&eacute; par date.</p>
+										<h3>URI</h3>
+										<p class="codeblock"><b>POST</b>&nbsp;&nbsp;/api/stat/ratingsavg</p>
+										<h3>Param&egrave;tres d'entr&eacute;e</h3>
+										<div class="data-table">
+											<table>
+												<tr>
+													<td>Nom</td>
+													<td>Type</td>
+													<td>Mandatoire</td>
+													<td>Description</td>
+													<td>Exemple</td>
+												</tr>
+												<tr>
+													<td>api_key</td>
+													<td>String</td>
+													<td>Oui</td>
+													<td>Clef alphanumeric de l'API</td>
+													<td>4fa8198954f011e7babfa860b6053f87</td>
+												</tr>
+												<tr>
+													<td>api_secret</td>
+													<td>String</td>
+													<td>Oui</td>
+													<td>Clef secrete alphanumeric de l'API</td>
+													<td>abxhr60b6053f874fa81989xxf011e7b</td>
+												</tr>
+												<tr>
+													<td>bid_id</td>
+													<td>alnum</td>
+													<td>Non</td>
+													<td>L'identifiant du widget. Si sp&eacute;cifi&eacute;, le volume ne sera calcul&eacute; que pour ce widget.</td>
+													<td>0040xSFoR2e1yJ0l</td>
+												</tr>
+												<tr>
+													<td>start_date</td>
+													<td>datetime</td>
+													<td>Non</td>
+													<td>La date de depart du tri.</td>
+													<td>2017-01-31 14:00:00</td>
+												</tr>
+												<tr>
+													<td>end_date</td>
+													<td>datetime</td>
+													<td>Non</td>
+													<td>La date de fin du tri.</td>
+													<td>2017-01-31 19:00:00</td>
+												</tr>
+											</table>
+										</div>
+										<h3>Valeur de retour</h3>
+										<p>Renvoi un objet index&eacute; par &eacute;valuations croissantes ou null si rien n'a &eacute;t&eacute; trouv&eacute;.</p>
+										<p class="codeblock">
+											{
+											</br>
+											&nbsp;"2016-11-23": "3.3333",
+											</br>
+											&nbsp;"2016-11-24": "3.1818",
+											</br>
+											&nbsp;"2016-11-25": "1.9744",
+											</br>
+											&nbsp;...
+											</br>
+											}
+										</p>
+										<h2>Appels</h2>
+										<p>Renvoi le nombre total d'appels.</p>
+										<h3>URI</h3>
+										<p class="codeblock"><b>POST</b>&nbsp;&nbsp;/api/stat/calls</p>
+										<h3>Param&egrave;tres d'entr&eacute;e</h3>
+										<div class="data-table">
+											<table>
+												<tr>
+													<td>Nom</td>
+													<td>Type</td>
+													<td>Mandatoire</td>
+													<td>Description</td>
+													<td>Exemple</td>
+												</tr>
+												<tr>
+													<td>api_key</td>
+													<td>String</td>
+													<td>Oui</td>
+													<td>Clef alphanumeric de l'API</td>
+													<td>4fa8198954f011e7babfa860b6053f87</td>
+												</tr>
+												<tr>
+													<td>api_secret</td>
+													<td>String</td>
+													<td>Oui</td>
+													<td>Clef secrete alphanumeric de l'API</td>
+													<td>abxhr60b6053f874fa81989xxf011e7b</td>
+												</tr>
+												<tr>
+													<td>bid_id</td>
+													<td>alnum</td>
+													<td>Non</td>
+													<td>L'identifiant du widget. Si sp&eacute;cifi&eacute;, le volume ne sera calcul&eacute; que pour ce widget.</td>
+													<td>0040xSFoR2e1yJ0l</td>
+												</tr>
+												<tr>
+													<td>start_date</td>
+													<td>datetime</td>
+													<td>Non</td>
+													<td>La date de depart du tri.</td>
+													<td>2017-01-31 14:00:00</td>
+												</tr>
+												<tr>
+													<td>end_date</td>
+													<td>datetime</td>
+													<td>Non</td>
+													<td>La date de fin du tri.</td>
+													<td>2017-01-31 19:00:00</td>
+												</tr>
+												<tr>
+													<td>sortby</td>
+													<td>Enum('id','date')</td>
+													<td>Non</td>
+													<td>Change la valeur retourn&eacute;.</td>
+													<td>id</td>
+												</tr>
+											</table>
+										</div>
+										<h3>Valeur de retour</h3>
+										<p>Valeur par d&eacute;fault</p>
+										<p class="codeblock">
+										[{
+										</br>
+										&nbsp;"bid_id": "0sJISS3X1wcaj8Dc",
+										</br>
+										&nbsp;"count": "45",
+										</br>
+										&nbsp;"date": "2017-06-02"
+										</br>
+										},{
+										</br>
+										&nbsp;...
+										</br>
+										}]
+										</p>
+										<p>Valeur tri&eacute;e par id</p>
+										<p class="codeblock">
+											[
+											</br>
+											&nbsp;"GS0shSLbiy30GhH8":[
+											</br>
+											&nbsp;&nbsp;{
+											</br>
+											&nbsp;&nbsp;&nbsp;"date": "2016-11-29",
+											</br>
+											&nbsp;&nbsp;&nbsp;"count": "1"
+											</br>
+											&nbsp;&nbsp;},{
+											</br>
+											&nbsp;&nbsp;&nbsp;"date": "2016-11-30",
+											</br>
+											&nbsp;&nbsp;&nbsp;"count": "4"
+											</br>
+											&nbsp;&nbsp;}
+											</br>
+											&nbsp;],
+											</br>
+											&nbsp;...
+											</br>
+											]
+										</p>
+										<p>Valeur tri&eacute;e par date</p>
+										<p class="codeblock">
+											[
+											</br>
+											&nbsp;"2016-11-24": [
+											</br>
+											&nbsp;&nbsp;{
+											</br>
+											&nbsp;&nbsp;&nbsp;"bid_id": "0040mSFoR2e1yJ0l",
+											</br>
+											&nbsp;&nbsp;&nbsp;"count": "3"
+											</br>
+											&nbsp;&nbsp;},{
+											</br>
+											&nbsp;&nbsp;&nbsp;"bid_id": "vPF6O2m6nDlYtKhw",
+											</br>
+											&nbsp;&nbsp;&nbsp;"count": "8"
+											</br>
+											&nbsp;&nbsp;}],
+											</br>
+											&nbsp;&nbsp;...
+											</br>
+											]
+										</p>
+										<h2>Statistiques Globales</h2>
+										<p class="codeblock">POST http://api.snapcall.io/stat/overall</p>
+										<div class="data-table">
+											<table>
+												<tr>
+													<td>Nom</td>
+													<td>Type</td>
+													<td>Mandatoire</td>
+													<td>Description</td>
+													<td>Exemple</td>
+												</tr>
+												<tr>
+													<td>api_key</td>
+													<td>String</td>
+													<td>Oui</td>
+													<td>Clef alphanumeric de l'API</td>
+													<td>4fa8198954f011e7babfa860b6053f87</td>
+												</tr>
+												<tr>
+													<td>api_secret</td>
+													<td>String</td>
+													<td>Oui</td>
+													<td>Clef secrete alphanumeric de l'API</td>
+													<td>abxhr60b6053f874fa81989xxf011e7b</td>
+												</tr>
+												<tr>
+													<td>start_date</td>
+													<td>datetime</td>
+													<td>Non</td>
+													<td>La date de depart du tri.</td>
+													<td>2017-01-31 14:00:00</td>
+												</tr>
+												<tr>
+													<td>end_date</td>
+													<td>datetime</td>
+													<td>Non</td>
+													<td>La date de fin du tri.</td>
+													<td>2017-01-31 19:00:00</td>
+												</tr>
+											</table>
+										</div>
+										<p>Valeur de retour</p>
+										<p class="codeblock">
+											{
+											</br>
+											&nbsp;"call_total": "3460",
+											</br>
+											&nbsp;"rate_avg": "0.97",
+											</br>
+											&nbsp;"spoken_total": "05:41:54",
+											</br>
+											&nbsp;"spoken_avg": "00:00:24"
+											</br>
+											}
+										</p>
+										<h2>Statistiques Globales</h2>
+										<p class="codeblock">POST http://api.snapcall.io/stat/browsers</p>
+										<div class="data-table">
+											<table>
+												<tr>
+													<td>Nom</td>
+													<td>Type</td>
+													<td>Mandatoire</td>
+													<td>Description</td>
+													<td>Exemple</td>
+												</tr>
+												<tr>
+													<td>api_key</td>
+													<td>String</td>
+													<td>Oui</td>
+													<td>Clef alphanumeric de l'API</td>
+													<td>4fa8198954f011e7babfa860b6053f87</td>
+												</tr>
+												<tr>
+													<td>api_secret</td>
+													<td>String</td>
+													<td>Oui</td>
+													<td>Clef secrete alphanumeric de l'API</td>
+													<td>abxhr60b6053f874fa81989xxf011e7b</td>
+												</tr>
+											</table>
+										</div>
+										<p>Valeur de retour</p>
+										<p class="codeblock">
+										{
+										</br>
+										&nbsp;"Chrome": 2063,
+										</br>
+										&nbsp;"Firefox": 61,
+										</br>
+										&nbsp;"Safari": 20,
+										</br>
+										&nbsp;...
+										</br>
+										}
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>

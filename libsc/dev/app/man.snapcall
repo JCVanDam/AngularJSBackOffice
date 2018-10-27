@@ -1,0 +1,38 @@
+NAME
+    Snapcall - Manages the interaction between Verto connection/callbacks and Snapcall widgets
+
+DESCRIPTION
+    Snapcall object is defined as an extention of Window object.
+    Attributes and methods can be accessed like this :
+        Snapcall.attribute
+        Snapcall.method()
+
+ATTRIBUTES
+    baseURL [string]
+        the absolute path for ressources (files, images, stylesheets ...)
+
+    states [object]
+        the call states
+
+    meta [object]
+        extra informations
+
+    verto [object]
+        Verto library handlers for initialization, calls and callbacks
+
+    caller [object]
+        various informations about user (navigator, language, location ...)
+
+    widgets [array]
+        intialized jQuery Snapcallwidget objects
+
+METHODS
+    Snapcall.ready( callback )
+        States when Snapcall Master Object is ready to be used
+
+    Snapcall.initWidget( options )
+        Creates, customizes, logs and stores each widgets matching $('.snapcall') in the DOM
+
+    Snapcall.getWidget( wid )
+    	Returns the matching stored widget object
+

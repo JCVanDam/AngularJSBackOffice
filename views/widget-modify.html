@@ -1,0 +1,755 @@
+<div ng-controller="initializeWidgetCtrl">
+	<div ng-controller="widgetModifyCtrl">
+		<div ng-include="'views/mainmenu.html'"></div>
+		<div class="page">
+			<div class="page-header-gen">
+				<div class="page-header-wrapper">
+					<img src="https://admin.snapcall.io/img/icon_black.svg" />Boutons
+					<div class="page-header-text">Visualisez, cr&eacute;ez et modifiez vos boutons</div>
+				</div>
+			</div>
+			<div class="page-nav">
+				<div class="page-nav-wrapper">
+					<div class="nav">
+						<span class="fa fa-home"></span>Accueil<span class="fa fa-angle-right"></span>Boutons<span class="fa fa-angle-right"></span>Modifier le bouton {{name}}
+					</div>
+				</div>
+			</div>
+			<form ng-submit="submit()">
+				<div class="page-col" style="width: 300px">
+					<div class="panel">
+						<div class="ux-menu-title"><span class="fa fa-pencil"></span>Modifier un bouton</div>
+						<div class="ux-menu-tag" ng-click="toggleMenu('basique')"><span class="fa fa-chevron-down"></span>Basique</div>
+						<ul class="ux-menu-list" ng-show="menuBlock.basique">
+							<li ng-class="disGeneral" ng-click="toggle('disGeneral')"><span class="fa fa-bookmark"></span>General</li>
+						</ul>
+						<div class="ux-menu-tag" ng-click="toggleMenu('advanced')"><span class="fa fa-chevron-down"></span>Options avanc&eacute;es</div>
+						<ul class="ux-menu-list" ng-show="menuBlock.advanced">
+							<li ng-class="selectToggle.disType" ng-click="toggle('disType')"><span class="fa fa-cube"></span>Type</li>
+							<li ng-class="selectToggle.disTags" ng-click="toggle('disTags')"><span class="fa fa-hashtag"></span>Tags</li>
+							<li ng-class="selectToggle.disMessages" ng-click="toggle('disMessages')"><span class="fa fa-align-center"></span>Messages</li>
+							<li ng-class="selectToggle.disSchedule" ng-click="toggle('disSchedule')"><span class="fa fa-clock-o"></span>Horaires</li>
+							<li ng-class="selectToggle.disCustom" ng-click="toggle('disCustom')"><span class="fa fa-flask"></span>Personnalisation</li>
+							<li ng-class="selectToggle.disSettings" ng-click="toggle('disSettings')"><span class="fa fa-laptop"></span>Affichage</li>
+							<li ng-class="selectToggle.disContext" ng-click="toggle('disContext')"><span><img src="img/list-alt.svg" height=14px wigth=14px></span>Context</li>
+						</ul>
+						<div class="ux-menu-button">
+							<button  ng-class="validate">
+								<span ng-show='validateSave' class='fa fa-check'></span>
+								<input ng-class="button" type="submit" value="Sauvegarder"/>
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-col" style="width: calc(100% - 300px);">
+					<div class="panel" ng-show="block.disGeneral">
+						<div class="panel-header">
+							<div class="title">
+								Informations g&eacute;n&eacute;rales
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="ux-txt-info">
+								Compl&eacute;tez les champs ci dessous et cliquez sur Sauvegarder pour cr&eacute;er un bouton rapidement ou continuer la configuration en cliquant sur les options avanc&eacute;es
+							</div>
+							<div class="ux-wrapper">
+								<div class="ux-block">
+									<div class="ux-label" ng-show="name">
+										Nom du bouton
+									</div>
+									<input type="text" name="name" placeholder="Nom du bouton" class="ux-input ux-input-input ux-input-medium" ng-model="name" ng-change="valideButton()" required />
+								</div>
+								<div class="ux-block">
+									<div class="ux-label" ng-show="brand">
+										Nom de la marque
+									</div>
+									<input type="text" name="brand" placeholder="Nom de la marque" class="ux-input ux-input-input ux-input-medium" ng-model="brand" ng-change="valideButton()" required />
+								</div>
+								<div class="ux-block">
+									<div class="ux-label" ng-show="call_id">
+										Num&eacute;ro de t&eacute;l&eacute;phone
+									</div>
+									<input type="text" name="brand" placeholder="Num&eacute;ro de t&eacute;l&eacute;phone" class="ux-input ux-input-input ux-input-medium" ng-model="call_id" ng-change="valideButton()" required />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-col" style="width: calc(100% - 300px);">
+					<div class="panel" ng-show="block.disType">
+						<div class="panel-header">
+							<div class="title">
+								Type de bouton
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="ux-txt-info">
+								Int&eacute;grer le bouton qui s'adapte au mieux au design de votre site web.
+							</div>
+							<div class="ux-wrapper">
+								<div class="ux-block ux-block-select">
+									<select class="ux-input ux-input-input ux-input-medium" ng-init="type=buttons[indexType]"  ng-options="item.label for item in buttons" ng-model="type" required></select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-col" style="width: calc(100% - 300px);">
+					<div class="panel" ng-show="block.disTags">
+						<div class="panel-header">
+							<div class="title">
+								Tags
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="ux-wrapper">
+								<div class="ux-block">
+									<div class="ux-label" ng-show="service">
+										Nom du service
+									</div>
+									<input type="text" name="service" placeholder="Nom du service" class="ux-input ux-input-input ux-input-medium" ng-model="service" />
+								</div>
+								<div class="ux-block">
+									<div class="ux-label" ng-show="product">
+										Nom du produit
+									</div>
+									<input type="text" name="product" placeholder="Nom du produit" class="ux-input ux-input-input ux-input-medium" ng-model="product" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-col" style="width: calc(100% - 300px);">
+					<div class="panel" ng-show="block.disMessages">
+						<div class="panel-header">
+							<div class="title">
+								Messages
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="msg_widget">
+								<div class="ux-txt-info">
+									Messages d'interaction
+								</div>
+									<div class="ux-wrapper">
+										<div class="ux-block">
+											<div>
+												Invitation
+											</div>
+											<div text-angular ng-model="htmlInvit" class="txt-editer-input"></div>
+										</div>
+										<div class="ux-block">
+											<div>
+												Evaluation de l&apos;appel
+											</div>
+											<div text-angular ng-model="htmlRate" class="txt-editer-input"></div>
+										</div>
+										<div class="ux-block">
+											<div>
+												Service ferm&eacute;
+											</div>
+											<div text-angular ng-model="htmlClosed" class="txt-editer-input"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div id="sublimboxbg" ng-show="generalSchedule">
+						<div id="sublimbox" style="width: 550px">
+							<div class="sublimbox-title">
+								Indiquez les jours de la semaine durant lesquels vos boutons seront ouvert.
+							</div>
+							<div class="body ux-block dialog" style="padding: 15px;">
+								<div class="flex-space-around" style="margin-bottom: 20px">
+									<div class="flex-space-around" ng-repeat="(key, value) in dayLstCheckbox">
+										<div class="btn-group" data-toggle="buttons">
+	  									<label ng-show="selectLst[value]" class="btn btn-primary selected-day">
+	    									<div ng-click="selectLst[value] = !selectLst[value]">{{key}}</div>
+	  									</label>
+											<label ng-hide="selectLst[value]" class="btn btn-primary unselected-day">
+	    									<div ng-click="selectLst[value] = !selectLst[value]">{{key}}</div>
+	  									</label>
+										</div>
+									</div>
+								</div>
+								<table class="table-schedule">
+									<tr>
+										<td>
+											Plage1
+										</td>
+										<td></td>
+										<td>
+											Plage2
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Ouverture
+										</td>
+										<td>
+											Fermeture
+										</td>
+										<td>
+											Ouverture
+										</td>
+										<td>
+											Fermeture
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<select ng-init="GenOpenMorning=scheduleModel[indexScheduleSpe[0]]" ng-options="item for item in scheduleModel" ng-model="GenOpenMorning" class="ux-input ux-input-input" ng-change="getGeneralSchedule('morning', 'open', GenOpenMorning)" style="padding-right: 28px;"></select>
+											<span class="fa fa-angle-right pattern-schedule"></span>
+										</td>
+										<td>
+											<select ng-init="GenCloseMorning=scheduleModel[indexScheduleSpe[1]]" ng-options="item for item in scheduleModel" ng-model="GenCloseMorning" class="ux-input ux-input-input" ng-change="getGeneralSchedule('morning', 'close', GenCloseMorning)" style="padding-right: 28px;"></select>
+											<span class="pattern-schedule">|</span>
+										</td>
+										<td>
+											<select ng-init="GenOpenAfternoon=scheduleModel[indexScheduleSpe[2]]" ng-options="item for item in scheduleModel" ng-model="GenOpenAfternoon" class="ux-input ux-input-input" ng-change="getGeneralSchedule('afternoon', 'open', GenOpenAfternoon)" style="padding-right: 28px;"></select>
+											<span class="fa fa-angle-right pattern-schedule"></span>
+										</td>
+										<td>
+											<select ng-init="GenCloseAfternoon=scheduleModel[indexScheduleSpe[3]]" ng-options="item for item in scheduleModel" ng-model="GenCloseAfternoon" class="ux-input ux-input-input" ng-change="getGeneralSchedule('afternoon', 'close', GenCloseAfternoon)" style="padding-right: 28px;"></select>
+										</td>
+									</tr>
+								</table>
+								<div class="flex-space-around">
+									<div class="ux-input ux-input-input ux-input-big" style="background-color: #00A9CC; margin-top: 20px; cursor: pointer;" >
+										<div ng-click="generalSchedule=false" style="color:white; text-align: center;">Annuler</div>
+									</div>
+									<div class="ux-input ux-input-input ux-input-big" style="background-color: #00A9CC; margin-top: 20px; cursor: pointer;" ng-click="submitSchedule()" >
+										<div style="color:white; text-align: center;">Valider</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="page-col" style="width: calc(100% - 300px);">
+						<div class="panel" ng-show="block.disSchedule">
+							<div class="panel-header">
+								<div class="title">
+									Horaires d'ouvertures du bouton
+								</div>
+							</div>
+							<div class="panel-body" ng-show="specificSchedule">
+								<div class="ux-txt-info">
+									Selectionnez pour chaque jour vos horaires d'ouverture et de fermeture directement sur le template.
+								</div>
+								<table class="table-schedule">
+									<tr>
+										<td></td>
+										<td>
+											Plage1
+										</td>
+										<td></td>
+										<td>
+											Plage2
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>
+											Ouverture
+										</td>
+										<td>
+											Fermeture
+										</td>
+										<td>
+											Ouverture
+										</td>
+										<td>
+											Fermeture
+										</td>
+									</tr>
+
+									<tr ng-show="dayLst.Monday">
+										<td>Lundi</td>
+										<td>
+											<select ng-init="speOpenMorning0=scheduleModel[indexSchedule[0]]" ng-options="item for item in scheduleModel" ng-model="speOpenMorning0" class="ux-input ux-input-input" ng-change="getSchedule('Monday', 'morning', 'open', speOpenMorning0)" style="padding-right: 28px;" required></select>
+											<span class="fa fa-angle-right pattern-schedule"></span>
+										</td>
+										<td>
+											<select ng-init="speCloseMorning0=scheduleModel[indexSchedule[1]]" ng-options="item for item in scheduleModel" ng-model="speCloseMorning0" class="ux-input ux-input-input" ng-change="getSchedule('Monday', 'morning', 'close', speCloseMorning0)" style="padding-right: 28px;" required></select>
+											<span class="pattern-schedule">|</span>
+										</td>
+										<td>
+											<select ng-init="speOpenAfternoon0=scheduleModel[indexSchedule[2]]" ng-options="item for item in scheduleModel" ng-model="speOpenAfternoon0" class="ux-input ux-input-input" ng-change="getSchedule('Monday', 'afternoon', 'open', speOpenAfternoon0)" style="padding-right: 28px;" required></select>
+											<span class="fa fa-angle-right pattern-schedule"></span>
+										</td>
+										<td>
+											<select ng-init="speCloseAfternoon0=scheduleModel[indexSchedule[3]]" ng-options="item for item in scheduleModel" ng-model="speCloseAfternoon0" class="ux-input ux-input-input" ng-change="getSchedule('Monday', 'afternoon', 'close', speCloseAfternoon0)" style="padding-right: 28px;" required></select>
+										</td>
+									</tr>
+
+									<tr ng-hide="dayLst.Monday">
+										<td>Lundi</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+									</tr>
+
+									<tr ng-show="dayLst.Tuesday">
+										<td>Mardi</td>
+										<td>
+											<select ng-init="speOpenMorning1=scheduleModel[indexSchedule[4]]" ng-options="item for item in scheduleModel" ng-model="speOpenMorning1" class="ux-input ux-input-input" ng-change="getSchedule('Tuesday', 'morning', 'open', speOpenMorning1)" style="padding-right: 28px;" required></select>
+											<span class="fa fa-angle-right pattern-schedule"></span>
+										</td>
+										<td>
+											<select ng-init="speCloseMorning1=scheduleModel[indexSchedule[5]]" ng-options="item for item in scheduleModel" ng-model="speCloseMorning1" class="ux-input ux-input-input" ng-change="getSchedule('Tuesday', 'morning', 'close', speCloseMorning1)" style="padding-right: 28px;" required></select>
+											<span class="pattern-schedule">|</span>
+										</td>
+										<td>
+											<select ng-init="speOpenAfternoon1=scheduleModel[indexSchedule[6]]" ng-options="item for item in scheduleModel" ng-model="speOpenAfternoon1" class="ux-input ux-input-input" ng-change="getSchedule('Tuesday', 'afternoon', 'open', speOpenAfternoon1)" style="padding-right: 28px;" required></select>
+											<span class="fa fa-angle-right pattern-schedule"></span>
+										</td>
+										<td>
+											<select ng-init="speCloseAfternoon1=scheduleModel[indexSchedule[7]]" ng-options="item for item in scheduleModel" ng-model="speCloseAfternoon1" class="ux-input ux-input-input" ng-change="getSchedule('Tuesday', 'afternoon', 'close', speCloseAfternoon1)" style="padding-right: 28px;" required></select>
+										</td>
+									</tr>
+
+									<tr ng-hide="dayLst.Tuesday">
+										<td>Mardi</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+									</tr>
+
+									<tr ng-show="dayLst.Wednesday">
+										<td>Mercredi</td>
+										<td>
+											<select ng-init="speOpenMorning2=scheduleModel[indexSchedule[8]]" ng-options="item for item in scheduleModel" ng-model="speOpenMorning2" class="ux-input ux-input-input" ng-change="getSchedule('Wednesday', 'morning', 'open', speOpenMorning2)" style="padding-right: 28px;" required></select>
+											<span class="fa fa-angle-right pattern-schedule"></span>
+										</td>
+										<td>
+											<select ng-init="speCloseMorning2=scheduleModel[indexSchedule[9]]" ng-options="item for item in scheduleModel" ng-model="speCloseMorning2" class="ux-input ux-input-input" ng-change="getSchedule('Wednesday', 'morning', 'close', speCloseMorning2)" style="padding-right: 28px;" required></select>
+											<span class="pattern-schedule">|</span>
+										</td>
+										<td>
+											<select ng-init="speOpenAfternoon2=scheduleModel[indexSchedule[10]]" ng-options="item for item in scheduleModel" ng-model="speOpenAfternoon2" class="ux-input ux-input-input" ng-change="getSchedule('Wednesday', 'afternoon', 'open', speOpenAfternoon2)" style="padding-right: 28px;" required></select>
+											<span class="fa fa-angle-right pattern-schedule"></span>
+										</td>
+										<td>
+											<select ng-init="speCloseAfternoon2=scheduleModel[indexSchedule[11]]" ng-options="item for item in scheduleModel" ng-model="speCloseAfternoon2" class="ux-input ux-input-input" ng-change="getSchedule('Wednesday', 'afternoon', 'close', speCloseAfternoon2)" style="padding-right: 28px;" required></select>
+										</td>
+									</tr>
+
+									<tr ng-hide="dayLst.Wednesday">
+										<td>Mercredi</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+									</tr>
+
+									<tr ng-show="dayLst.Thursday">
+										<td>Jeudi</td>
+										<td>
+											<select ng-init="speOpenMorning3=scheduleModel[indexSchedule[12]]" ng-options="item for item in scheduleModel" ng-model="speOpenMorning3" class="ux-input ux-input-input" ng-change="getSchedule('Thursday', 'morning', 'open', speOpenMorning3)" style="padding-right: 28px;" required></select>
+											<span class="fa fa-angle-right pattern-schedule"></span>
+										</td>
+										<td>
+											<select ng-init="speCloseMorning3=scheduleModel[indexSchedule[13]]" ng-options="item for item in scheduleModel" ng-model="speCloseMorning3" class="ux-input ux-input-input" ng-change="getSchedule('Thursday', 'morning', 'close', speCloseMorning3)" style="padding-right: 28px;" required></select>
+											<span class="pattern-schedule">|</span>
+										</td>
+										<td>
+											<select ng-init="speOpenAfternoon3=scheduleModel[indexSchedule[14]]" ng-options="item for item in scheduleModel" ng-model="speOpenAfternoon3" class="ux-input ux-input-input" ng-change="getSchedule('Thursday', 'afternoon', 'open', speOpenAfternoon3)" style="padding-right: 28px;" required></select>
+											<span class="fa fa-angle-right pattern-schedule"></span>
+										</td>
+										<td>
+											<select ng-init="speCloseAfternoon3=scheduleModel[indexSchedule[15]]" ng-options="item for item in scheduleModel" ng-model="speCloseAfternoon3" class="ux-input ux-input-input" ng-change="getSchedule('Thursday', 'afternoon', 'close', speCloseAfternoon3)" style="padding-right: 28px;" required></select>
+										</td>
+									</tr>
+
+									<tr ng-hide="dayLst.Thursday">
+										<td>Jeudi</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+									</tr>
+
+									<tr ng-show="dayLst.Friday">
+										<td>Vendredi</td>
+										<td>
+											<select ng-init="speOpenMorning4=scheduleModel[indexSchedule[16]]" ng-options="item for item in scheduleModel" ng-model="speOpenMorning4" class="ux-input ux-input-input" ng-change="getSchedule('Friday', 'morning', 'open', speOpenMorning4)" style="padding-right: 28px;" required></select>
+											<span class="fa fa-angle-right pattern-schedule"></span>
+										</td>
+										<td>
+											<select ng-init="speCloseMorning4=scheduleModel[indexSchedule[17]]" ng-options="item for item in scheduleModel" ng-model="speCloseMorning4" class="ux-input ux-input-input" ng-change="getSchedule('Friday', 'morning', 'close', speCloseMorning4)" style="padding-right: 28px;" required></select>
+											<span class="pattern-schedule">|</span>
+										</td>
+										<td>
+											<select ng-init="speOpenAfternoon4=scheduleModel[indexSchedule[18]]" ng-options="item for item in scheduleModel" ng-model="speOpenAfternoon4" class="ux-input ux-input-input" ng-change="getSchedule('Friday', 'afternoon', 'open', speOpenAfternoon4)" style="padding-right: 28px;" required></select>
+											<span class="fa fa-angle-right pattern-schedule"></span>
+										</td>
+										<td>
+											<select ng-init="speCloseAfternoon4=scheduleModel[indexSchedule[19]]" ng-options="item for item in scheduleModel" ng-model="speCloseAfternoon4" class="ux-input ux-input-input" ng-change="getSchedule('Friday', 'afternoon', 'close', speCloseAfternoon4)" style="padding-right: 28px;" required></select>
+										</td>
+									</tr>
+
+									<tr ng-hide="dayLst.Friday">
+										<td>Vendredi</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+									</tr>
+
+									<tr ng-show="dayLst.Saturday">
+										<td>Samedi</td>
+										<td>
+											<select ng-init="speOpenMorning5=scheduleModel[indexSchedule[20]]" ng-options="item for item in scheduleModel" ng-model="speOpenMorning5" class="ux-input ux-input-input" ng-change="getSchedule('Saturday', 'morning', 'open', speOpenMorning5)" style="padding-right: 28px;" required></select>
+											<span class="fa fa-angle-right pattern-schedule"></span>
+										</td>
+										<td>
+											<select ng-init="speCloseMorning5=scheduleModel[indexSchedule[21]]" ng-options="item for item in scheduleModel" ng-model="speCloseMorning5" class="ux-input ux-input-input" ng-change="getSchedule('Saturday', 'morning', 'close', speCloseMorning5)" style="padding-right: 28px;" required></select>
+											<span class="pattern-schedule">|</span>
+										</td>
+										<td>
+											<select ng-init="speOpenAfternoon5=scheduleModel[indexSchedule[22]]" ng-options="item for item in scheduleModel" ng-model="speOpenAfternoon5" class="ux-input ux-input-input" ng-change="getSchedule('Saturday', 'afternoon', 'open', speOpenAfternoon5)" style="padding-right: 28px;" required></select>
+											<span class="fa fa-angle-right pattern-schedule"></span>
+										</td>
+										<td>
+											<select ng-init="speCloseAfternoon5=scheduleModel[indexSchedule[23]]" ng-options="item for item in scheduleModel" ng-model="speCloseAfternoon5" class="ux-input ux-input-input" ng-change="getSchedule('Saturday', 'afternoon', 'close', speCloseAfternoon5)" style="padding-right: 28px;" required></select>
+										</td>
+									</tr>
+
+									<tr ng-hide="dayLst.Saturday">
+										<td>Samedi</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+									</tr>
+
+									<tr ng-show="dayLst.Sunday">
+										<td>Dimanche</td>
+										<td>
+											<select ng-init="speOpenMorning6=scheduleModel[indexSchedule[24]]" ng-options="item for item in scheduleModel" ng-model="speOpenMorning6" class="ux-input ux-input-input" ng-change="getSchedule('Sunday', 'morning', 'open', speOpenMorning6)" style="padding-right: 28px;" required></select>
+											<span class="fa fa-angle-right pattern-schedule"></span>
+										</td>
+										<td>
+											<select ng-init="speCloseMorning6=scheduleModel[indexSchedule[25]]" ng-options="item for item in scheduleModel" ng-model="speCloseMorning6" class="ux-input ux-input-input" ng-change="getSchedule('Sunday', 'morning', 'close', speCloseMorning6)" style="padding-right: 28px;" required></select>
+											<span class="pattern-schedule">|</span>
+										</td>
+										<td>
+											<select ng-init="speOpenAfternoon6=scheduleModel[indexSchedule[26]]" ng-options="item for item in scheduleModel" ng-model="speOpenAfternoon6" class="ux-input ux-input-input" ng-change="getSchedule('Sunday', 'afternoon', 'open', speOpenAfternoon6)" style="padding-right: 28px;" required></select>
+											<span class="fa fa-angle-right pattern-schedule"></span>
+										</td>
+										<td>
+											<select ng-init="speCloseAfternoon6=scheduleModel[indexSchedule[27]]" ng-options="item for item in scheduleModel" ng-model="speCloseAfternoon6" class="ux-input ux-input-input" ng-change="getSchedule('Sunday', 'afternoon', 'close', speCloseAfternoon6)" style="padding-right: 28px;" required></select>
+										</td>
+									</tr>
+
+									<tr ng-hide="dayLst.Sunday">
+										<td>Dimanche</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+										<td>
+											<div class="ux-input ux-input-input" style="width: 80px">Ferm&eacute;</div>
+										</td>
+									</tr>
+								</table>
+								<div class="ux-input ux-input-input ux-input-big" style="background-color: #00A9CC; width: 200px; margin: auto; margin-top: 20px; cursor: pointer;" ng-click="popUpSchedule()">
+									<div style="color:white; text-align: center;">
+										R&eacute;initializez vos horaires.
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="page-col" style="width: calc(100% - 300px);">
+						<div class="panel" ng-show="block.disCustom">
+							<div class="panel-header">
+								<div class="title">
+									Personnalisation
+								</div>
+							</div>
+							<div class="panel-body">
+								<div class="ux-txt-info">
+									Couleurs et taille
+								</div>
+								<div class="ux-wrapper">
+									<img src={{dataUrlWidget}} height={{size}} width={{size}}></img>
+									<div class="ux-block">
+										<div class="ux-label" label="btn-widget_color_fg">
+											Premier plan
+										</div>
+										<input type="color" name="widget_color_fg" value={{colorFg}} class="ux-input ux-input-color ux-input-medium" label="btn-widget_color_fg" ng-model="colorFg" ng-change="changeColor()" />
+									</div>
+									<div class="ux-block">
+										<div class="ux-label" label="btn-widget_color_fg">
+											Arri&egrave;re plan
+										</div>
+										<input type="color" name="widget_color_bg" value={{colorBg}} class="ux-input ux-input-color ux-input-medium" label="btn-widget_color_fg" ng-model="colorBg" ng-change="changeColor()" />
+									</div>
+									<div class="ux-block">
+										<div class="ux-label" label="btn-widget_color_fg">
+											Taille({{size}}px)
+										</div>
+										<input type="range" min="60" max="220" name="widget_size" value="60" class="ux-input ux-input-range ux-input-medium" label="btn-widget_size" ng-model="size" />
+									</div>
+									<div class="ux-block">
+										<div class="ux-txt-info">
+											Fond d'écran de la page hébérgée(jpg, jpeg, png)
+										</div>
+										<input type="file" name="file" class="ux-input ux-input-medium" style="padding: 10px" onchange="angular.element(this).scope().uploadPhoto(this.files)" />
+									</div>
+									<img src={{dataUrl}} height="200" width="200"></img>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="page-col" style="width: calc(100% - 300px);">
+						<div class="panel" ng-show="block.disSettings">
+							<div class="panel-header">
+								<div class="title">
+									Option d'affichage
+								</div>
+							</div>
+							<div class="panel-body">
+								<div class="ux-txt-info">
+									En dehors des plages d'ouverture de votre bouton
+								</div>
+								<div class="ux-block">
+									<div class="ux-blockline">
+										<input type="radio" ng-model="display_schedule" value="1" class="ux-input ux-input-radio" />
+										<div>
+											Afficher un message personnalise.
+										</div>
+									</div>
+									<div class="ux-blockline">
+										<input type="radio" ng-model="display_schedule" value="0" class="ux-input ux-input-radio"/>
+										<div>
+											Masquer le bouton.
+										</div>
+									</div>
+								</div>
+								<div class="ux-txt-info">
+									Incompatibilité du navigateur
+								</div>
+								<div class="ux-block">
+									<div class="ux-blockline">
+										<input type="radio" ng-model="display_navigator" value="1" class="ux-input ux-input-radio" />
+										<div>
+											Afficher un message d'erreur.
+										</div>
+									</div>
+									<div class="ux-blockline">
+										<input type="radio" ng-model="display_navigator" value="0" class="ux-input ux-input-radio" />
+										<div>
+											Masquer le bouton.
+										</div>
+									</div>
+								</div>
+								<div class="ux-txt-info">
+									Incompatibilité du systeme d'exploitation
+								</div>
+								<div class="ux-block">
+									<div class="ux-blockline">
+										<input type="radio" ng-model="display_os" value="1" class="ux-input ux-input-radio" />
+										<div>
+											Activer l'appel GSM natif.
+										</div>
+									</div>
+									<div class="ux-blockline">
+										<input type="radio" ng-model="display_os" value="0" class="ux-input ux-input-radio" />
+										<div>
+											Masquer le bouton.
+										</div>
+									</div>
+								</div>
+								<div class="ux-txt-info">
+									Site web non securise (non https)
+								</div>
+								<div class="ux-block">
+									<div class="ux-blockline">
+										<input type="radio" ng-model="display_secure" value="1" class="ux-input ux-input-radio" />
+										<div>
+											Rediriger vers une page hebergée securisée.
+										</div>
+									</div>
+									<div class="ux-blockline">
+										<input type="radio" ng-model="display_secure" value="0" class="ux-input ux-input-radio" />
+										<div>
+											Masquer le bouton.
+										</div>
+									</div>
+								</div>
+								<div class="ux-txt-info">
+									Notice d'accessibilité
+								</div>
+								<div class="ux-block">
+									<div class="ux-blockline">
+										<input type="radio" ng-model="display_accessibility" value="1" class="ux-input ux-input-radio" />
+										<div>
+											Activer l'accessibilité clavier.
+										</div>
+									</div>
+									<div class="ux-blockline">
+										<input type="radio" ng-model="display_accessibility" value="0" class="ux-input ux-input-radio" />
+										<div>
+											Masquer le bouton.
+										</div>
+									</div>
+									<div class="ux-txt-info">
+										Numéro appelant (si aucun numéro n'est sélectionné une valeur sera attribué par défault).
+									</div>
+									<div class="ux-block">
+										<div class="ux-blockline">
+											<input type="text" ng-model="caller_id" class="ux-input ux-input-input ux-input-medium" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="page-col" style="width: calc(100% - 300px);">
+						<div class="panel" ng-show="block.disContext">
+							<div class="panel-header">
+								<div class="title">
+									Context
+								</div>
+							</div>
+							<div class="panel-body">
+								<div class="ux-txt-info">
+									R&eacute;cuperez les cookies et s&eacute;lectionnez dans votre page web les balises sur lesquelles vos visiteurs cliquent.
+								</div>
+								<div class="ux-block">
+									<div style="display: flex;overflow: scroll;width: 100%;">
+										<table style="width: 300px">
+											<tr>
+												<td style="padding-bottom:20px">Tags</td>
+											</tr>
+											<tr ng-repeat="tag in tags" style="margin-bottom: 15px;">
+												<td>
+													<div class="ux-block">
+														<div class="ux-label" ng-show="tag.tagName">
+															Nom
+														</div>
+														<input type="text" class="ux-input ux-input-input" placeholder="Nom de la balise" ng-model="tag.name" ng-disabled="!tag.display"/>
+													</div>
+												</td>
+												<td>
+													<div class="ux-block">
+														<div class="ux-label" ng-show="tag.tagId">
+															Identifiant
+														</div>
+														<input type="text" class="ux-input ux-input-input" placeholder="Identifiant de la balise" ng-model="tag.id" ng-disabled="!tag.display"/>
+													</div>
+												</td>
+												<td>
+													<img src={{imageContext}} height="25" width="25" style="margin-bottom: 26px; margin-left: 5px;" ng-show="tag.display" ng-click="add(tag, 'tags');"></img>
+													<span class="fa fa-close mhover tooltip-delete" style="font-size: 20px; padding-bottom: 25px; padding-left: 10px" ng-hide="tag.display" ng-click="delete(tag, 'tags');"></span>
+												</td>
+											</tr>
+										</table>
+										<table style="width: 300px; margin-left: 20px;">
+											<tr>
+												<td style="padding-bottom:20px">Cookies</td>
+											</tr>
+											<tr ng-repeat="cookie in cookies" style="margin-bottom: 15px;">
+												<td>
+													<div class="ux-block">
+														<div class="ux-label" ng-show="cookie.cookieName">
+															Nom
+														</div>
+														<input type="text" class="ux-input ux-input-input" placeholder="Nom du cookie" ng-model="cookie.name" ng-disabled="!cookie.display"/>
+													</div>
+												</td>
+												<td>
+													<div class="ux-block">
+														<div class="ux-label" ng-show="cookie.cookieId">
+															Identifiant
+														</div>
+														<input type="text" class="ux-input ux-input-input" placeholder="Identifiant du cookie" ng-model="cookie.id" ng-disabled="!cookie.display"/>
+													</div>
+												</td>
+												<td>
+													<img src={{imageContext}} height="25" width="25" style="margin-bottom: 26px; margin-left: 5px;" ng-show="cookie.display" ng-click="add(cookie, 'cookies');"></img>
+													<span class="fa fa-close mhover tooltip-delete" style="font-size: 20px; padding-bottom: 25px; padding-left: 10px" ng-hide="cookie.display" ng-click="delete(cookie, 'cookies');"></span>
+												</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<div ng-show="errCookieName">Ce nom est d&eacute;j&agrave; utilis&eacute; par un autre cookie.</div>
+								<div ng-show="errCookieId">Cette identifiant est d&eacute;j&agrave; utilis&eacute; par un autre cookie.</div>
+								<div ng-show="errTagName">Ce nom est d&eacute;j&agrave; utilis&eacute; par un autre tag.</div>
+								<div ng-show="errTagId">Cette identifiant est d&eacute;j&agrave; utilis&eacute; par un autre tag.</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

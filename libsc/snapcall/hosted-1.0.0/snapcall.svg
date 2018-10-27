@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="6.2555089mm"
+   height="6.2550073mm"
+   viewBox="0 0 22.165189 22.163411"
+   id="svg9009"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="Snapcall Button.svg">
+  <defs
+     id="defs9011" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="98.9397"
+     inkscape:cy="-308.9183"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1440"
+     inkscape:window-height="803"
+     inkscape:window-x="0"
+     inkscape:window-y="1"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata9014">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-126.0603,-201.2805)">
+    <g
+       transform="matrix(1.0697989,0,0,1.0697989,-2885.7269,21.755991)"
+       id="g8732-9-5-2">
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/Users/arnaudpigueller/Desktop/ACCOR2.png"
+         inkscape:connector-curvature="0"
+         id="path4600-4-0-3-0-5"
+         d="m 2825.452,168.31332 c -1.0038,0.0194 -2.0167,0.19123 -3.0092,0.5321 -5.149,1.76845 -7.8919,7.37735 -6.1235,12.52668 1.7683,5.14934 7.3776,7.88901 12.5267,6.12056 5.1489,-1.76845 7.8888,-7.37435 6.1205,-12.52368 l -0.6794,-1.53916 c -0.076,-0.13906 -0.1585,-0.2748 -0.2405,-0.40884 l -4.7858,2.03818 -0.4148,0.018 -0.2646,-0.26455 0.084,-0.35172 2.0592,-4.73772 c -1.5783,-0.94817 -3.4073,-1.44594 -5.2728,-1.40989 z"
+         clip-path="none"
+         mask="none"
+         style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/Users/arnaudpigueller/Desktop/ACCOR2.png"
+         inkscape:connector-curvature="0"
+         id="path4642-2-6-5-3-6"
+         d="m 2823.6225,173.58757 1.2257,2.00566 -0.074,0.29713 -1.04,0.92855 -0.037,0.18571 0.1858,0.48284 0.52,0.74283 0.1857,0.26 0.7056,0.77997 0.78,0.59427 0.6314,0.40857 0.2601,0.0743 0.2971,0.0372 0.8542,-1.07711 0.26,-0.14857 2.1171,1.26283 0.037,0.29713 -0.1486,0.70569 -0.4086,0.4457 -0.7056,0.37142 -0.52,0.22285 -0.8914,-0.0372 -0.9657,-0.29713 -1.1514,-0.59427 -1.1514,-0.7057 -1.2628,-1.3371 -0.9285,-1.29996 -0.5201,-1.26283 -0.2599,-1.03997 -0.037,-0.77998 0.3343,-0.63141 0.2229,-0.4457 0.2228,-0.14857 0.2229,-0.22285 0.7057,-0.18571 z"
+         style="fill:#ffffff;stroke:none" />
+    </g>
+  </g>
+</svg>

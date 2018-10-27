@@ -1,0 +1,79 @@
+{
+  "_args": [
+    [
+      "verto",
+      "/root/Desktop"
+    ],
+    [
+      "verto",
+      "/var/www/html/libsc"
+    ]
+  ],
+  "_from": "verto@latest",
+  "_id": "verto@0.0.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/verto",
+  "_nodeVersion": "5.9.1",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/verto-0.0.2.tgz_1463166201603_0.9012262846808881"
+  },
+  "_npmUser": {
+    "email": "italorossib@gmail.com",
+    "name": "italorossi"
+  },
+  "_npmVersion": "3.7.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": null,
+    "raw": "verto",
+    "rawSpec": "verto",
+    "scope": null,
+    "spec": "/var/www/html/libsc/verto",
+    "type": "directory"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/verto/-/verto-0.0.2.tgz",
+  "_shasum": "2610df6a9460e3d81bf27de5aaee664d6d6e8bdd",
+  "_shrinkwrap": null,
+  "_spec": "verto",
+  "_where": "/var/www/html/libsc",
+  "dependencies": {},
+  "description": "This file needs to say more. Documentation for the api needs to be developed with jsdoc-toolkit http://pulkitgoyal.in/documenting-jquery-plugins-jsdoc-toolkit/",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-watch": "*"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "2610df6a9460e3d81bf27de5aaee664d6d6e8bdd",
+    "tarball": "https://registry.npmjs.org/verto/-/verto-0.0.2.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "italorossi",
+      "email": "italorossib@gmail.com"
+    },
+    {
+      "name": "ja0n",
+      "email": "jamonsterr@gmail.com"
+    },
+    {
+      "name": "jonatasoliveira",
+      "email": "jonatas.oliveira@gmail.com"
+    },
+    {
+      "name": "stefanyohansson",
+      "email": "sy.fen0@gmail.com"
+    }
+  ],
+  "name": "verto",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "scripts": {},
+  "version": "0.0.2"
+}

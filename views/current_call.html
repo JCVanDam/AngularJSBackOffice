@@ -1,0 +1,53 @@
+<div ng-controller="currentCallCtrl">
+	<div ng-include="'views/mainmenu.html'"></div>
+	<div class="page">
+		<div class="page-header-gen">
+			<div class="page-header-wrapper">
+				<span class="fa fa-plug"></span>Appels en cours
+				<div class="page-header-text">Authentification et requetes</div>
+			</div>
+		</div>
+		<div class="page-nav">
+			<div class="page-nav-wrapper">
+				<div class="nav">
+					<span class="fa fa-home"></span>Accueil<span class="fa fa-angle-right"></span>Rapports<span class="fa fa-angle-right"></span>Appels<span class="fa fa-angle-right"></span>En cours
+				</div>
+			</div>
+		</div>
+		<div class="page-wrapper">
+			<div class="page-row">
+				<div id="bundle-api">
+					<div class="panel" ng-repeat="item in block">
+						<div class="panel-header">
+							<div class="title">
+								<div>{{item.name}}</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="data-table current">
+								<table>
+									<tr>
+										<td class="table-important">Date</td>
+										<td class="table-important">Ip</td>
+										<td class="table-important">Localisation</td>
+										<td class="table-important">Navigator</td>
+										<td class="table-important">Langue</td>
+										<td class="table-important">Dur&eacute;e</td>
+									</tr>
+									<tr ng-repeat="data in item.list">
+										<td>{{data.call_start}}</td>
+										<td>{{data.context.default.ip}}</td>
+										<td>{{data.context.default.city}}</td>
+										<td>{{data.context.default.browser}}</td>
+										<td>{{data.context.default.language}}</td>
+										<td>{{data.duration}}</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

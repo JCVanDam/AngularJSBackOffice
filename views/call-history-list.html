@@ -1,0 +1,61 @@
+<div ng-controller="callHistoryListCtrl">
+	<div ng-include="'views/mainmenu.html'"></div>
+	<div class="page">
+		<div class="page-header-gen">
+			<div class="page-header-wrapper">
+				<span class="fa fa-circle"></span>Historique d'appels
+				<div class="page-header-text">Retrouvez la trace de tous les appels passés depuis votre site</div>
+			</div>
+		</div>
+		<div class="page-nav">
+			<div class="page-nav-wrapper">
+				<div class="nav">
+					<span class="fa fa-home"></span>Accueil<span class="fa fa-angle-right"></span>Rapport<span class="fa fa-angle-right"></span>Appels<span class="fa fa-angle-right"></span>Historique
+				</div>
+				<span class="fa fa-cloud-download tooltip-csv" ng-csv="csv" style="float: right; padding: 15px 15px; cursor: pointer;" csv-header="['BID', 'DATE', 'IP', 'LOCALISTAION', 'NAVIGATEUR', 'LANGUE', 'PAGE', 'DUREE', 'EVALUATION']" filename="historique-appel.csv"></span>
+			</div>
+		</div>
+		<div class="page-wrapper">
+			<div class="page-row">
+				<div class="panel" ng-repeat="(key, value) in entries">
+					 <div class="panel-header">
+						 <div class="title">
+								{{ value[0].name }}
+							</div>
+						<div class="tools">
+							<span class="fa fa-cloud-download tooltip-csv" ng-csv="value.csv" csv-header="['BID', 'DATE', 'IP', 'LOCALISTAION', 'NAVIGATEUR', 'LANGUE', 'PAGE', 'DUREE', 'EVALUATION']" filename="historique-appel.csv"></span>
+							<span class="fa fa-chevron-down tooltip-toggle" ng-click="displayData(key)"></span>
+							<span class="fa fa-close tooltip-close"></span>
+						</div>
+						<div class="panel-body">
+							<div class="data-table">
+								<table ng-show="value.show">
+									<tr>
+										<td class="table-important">Date</td>
+										<td class="table-important">Ip</td>
+										<td class="table-important">Localisation</td>
+										<td class="table-important">Navigateur</td>
+										<td class="table-important">Langue</td>
+										<td class="table-important">Page</td>
+										<td class="table-important">Dur&eacute;e</td>
+										<td class="table-important">Evaluation</td>
+									</tr>
+									<tr ng-repeat="value in button">
+										<td class="table-important">{{ value.call_start }}</td>
+										<td class="table-important">{{ value.context.default.ip }}</td>
+										<td class="table-important">{{ value.context.default.city }}</td>
+										<td class="table-important">{{ value.context.default.browser }}</td>
+										<td class="table-important">{{ value.context.default.language }}</td>
+										<td class="table-important">{{ value.context.default.url_title }} {{ value.context.default.url }}</td>
+										<td class="table-important">{{ value.duration }}</td>
+										<td class="table-important">{{ value.rate | number : 1 }}</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

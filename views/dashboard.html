@@ -1,0 +1,180 @@
+<div ng-controller="dashboardCtrl">
+	<div ng-include="'views/mainmenu.html'"></div>
+	<div class="page">
+		<div class="page-header-gen">
+			<div class="page-header-wrapper">
+				<span class="fa fa-pie-chart"></span>Tableau de bord
+				<div class="page-header-text">Suivez les statistiques de vos boutons</div>
+			</div>
+		</div>
+		<div class="page-nav">
+			<div class="page-nav-wrapper">
+				<div class="nav">
+					<span class="fa fa-home"></span>Accueil<span class="fa fa-angle-right"></span>Rapport<span class="fa fa-angle-right"></span>Tableau de bord
+				</div>
+			</div>
+		</div>
+		<div class="page-wrapper">
+			<div class="page-row">
+				<div class="page-col page-col-100">
+					<div class="filter txt-right">
+						<form id="form-date" ng-submit="global()">
+							Du
+							<input type="text" class="datepicker start_date" name="filter_start_date" placeholder="JJ/MM/AAAA HH:MM">
+							Au
+							<input type="text" class="datepicker end_date" name="filter_end_date" placeholder="JJ/MM/AAAA HH:MM">
+							<input class="btn btn-default" id="btn-date" type="submit" value="Filtrer les resultats">
+						</form>
+					</div>
+					<div class="page-row">
+						<div class="page-col page-col-60">
+							<div class="page-row">
+								<div class="page-col page-col-100">
+									<div class="page-row">
+										<div class="page-col page-col-100">
+											<div class="panel">
+												<div class="panel-header">
+													<div class="title-big">
+														Statistiques globales
+													</div>
+												</div>
+												<div class="panel-body">
+													<table class="stat-table">
+														<tr>
+															<td>
+																<span class="fa fa-phone fa-3x"></span><br />
+																<span class="stat-number">{{sommeNumber}}</span><br />
+																<span class="stat-legend">nb total d'appels</span>
+															</td>
+															<td>
+																<span class="fa fa-bullhorn fa-3x"></span><br />
+																<span class="stat-number">{{sommeTime}}</span><br />
+																<span class="stat-legend">dur&eacute;e total d'appels</span>
+															</td>
+															<td>
+																<span class="fa fa-bolt fa-3x"></span><br />
+																<span class="stat-number">{{averageTime}}</span><br />
+																<span class="stat-legend">dur&eacute;e moy. d'appel</span>
+															</td>
+															<td>
+																<span class="fa fa-star fa-3x"></span><br />
+																<span class="stat-number">{{averageScore}}</span><br />
+																<span class="stat-legend">moy. evaluation d'appel</span>
+															</td>
+														</tr>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="page-row">
+										<div class="page-col page-col-100">
+											<div class="panel" id="graphCallVolumeButton">
+											<div class="panel-header">
+													<div class="title">
+														Volume d'appels par bouton
+													</div>
+												</div>
+												<div class="panel-body" id="chartContentVolumeButton">
+													<canvas id="graphCallVolumeButtonChartJS" style="height:1000px"></canvas>
+												</div>
+											</div>
+										</div>
+										<div class="page-col page-col-100">
+											<div class="panel" id="tableCallHistoryPreview">
+												<div class="panel-header">
+													<div class="title">
+														Dernier appels re&ccedil;u
+													</div>
+												</div>
+												<div class="panel-body">
+													<div class="data-table">
+														<table>
+															<tr>
+																<td>Date</td>
+																<td>Bouton</td>
+																<td>Ip</td>
+																<td>Localisation</td>
+																<td>Navigateur</td>
+																<td>Duree</td>
+																<td>Evaluation</td>
+															</tr>
+															<tr ng-repeat="last in lastCall">
+																<td>{{last.call_start}}</td>
+																<td>{{last.bid_id}}</td>
+																<td>{{last.context.default.ip}}</td>
+																<td>{{last.context.default.city}}</td>
+																<td>{{last.context.default.browser}}</td>
+																<td>{{last.duration}}</td>
+																<td>{{last.rating}}</td>
+															</tr>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="page-col page-col-40">
+							<div class="page-row">
+								<div class="page-col page-col-50">
+									<div class="panel">
+										<div class="panel-header">
+											<div class="title">
+												Navigateurs
+											</div>
+										</div>
+										<div class="panel-body">
+											<canvas id="graphBrowserUsageChartJS" height="300"></canvas>
+										</div>
+									</div>
+								</div>
+								<div class="page-col page-col-50">
+									<div class="panel">
+										<div class="panel-header">
+											<div class="title">
+												Evaluation
+											</div>
+										</div>
+										<div class="panel-body" id="chartContentCallRating">
+											<canvas id="graphCallRatingChartJS" height="300"></canvas>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="page-row">
+								<div class="page-col page-col-100">
+									<div class="panel">
+										<div class="panel-header">
+											<div class="title">
+												Volume global d'appels
+											</div>
+										</div>
+										<div class="panel-body">
+											<canvas id="graphCallVolumeGlobalChartJS" height="100px"></canvas>
+										</div>
+									</div>
+								</div>
+								<div class="page-col page-col-100" id="chartContentVolumeButton">
+									<div class="panel">
+										<div class="panel-header">
+											<div class="title">
+												Satisfaction globale
+											</div>
+										</div>
+										<div class="panel-body" id="chartContentSatisfactionGlobal">
+											<canvas id="graphCallSatisfactionGlobalChartJS" height="100px"></canvas>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

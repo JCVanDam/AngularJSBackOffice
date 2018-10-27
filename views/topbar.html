@@ -1,0 +1,48 @@
+<div ng-controller="topBarCtrl" ng-show="displayTopBar">
+	<div class="topbar">
+		<div class="topbar-header">
+			<img id="mainimg-mainmenu" src="https://admin.snapcall.io/img/snapcall_blanc.png" class="mainmenu-title">
+		</div>
+		<div class="topbar-action" style="display:flex; float:right; margin: 15px 15px;">
+			<div>
+				<img ng-mouseover="tooltipLog=true" ng-mouseleave="tooltipLog=false" src="https://admin.snapcall.io/img/icon_white.svg" ng-click="initializeConnection()" style="margin: -5px 25px 0px 0px; cursor: pointer;" width="30px" height="30px">
+				<span ng-show="tooltipLog" class="tooltip" style="top: 5px; right:200px;">Recevoir les appels entrant</span>
+			</div>
+			<div>{{name}} - {{company}}</div>
+		</div>
+		<video width=800 id="webcam" autoplay="autoplay" hidden="true"></video>
+	</div>
+
+	<div ng-show="displayHandleLog" class="page-call-handle page-call-handle-h50">
+		<div class="flex-space-around" style="margin: 20px 40px 20px 40px; align-items: center;">
+			<div ng-hide="logStatus">Hors ligne</div>
+			<div ng-show="logStatus">En ligne</div>
+			<div class="logbox" ng-mousedown="changeStatus();">
+				<div class="cursor"></div>
+			</div>
+		</div>
+	</div>
+
+	<div ng-show="displayHandleCall" class="page-call-handle page-call-handle-h150">
+		<div ng-hide="hideHanswer" style="text-align:center; margin-bottom:15px;">
+			<div class="ux-txt-info txt-call-box">
+				Appel en cours
+			</div>
+			<div class=timer>{{hour}}:{{min}}:{{sec}}</div>
+		</div>
+		<div ng-show="hideHanswer" style="text-align:center; margin-bottom:20px;">
+			<div class="ux-txt-info txt-call-box">
+				Appel entrant
+			</div>
+			<img src=" data:image/svg+xml;base64, PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjgwcHgiIGhlaWdodD0iMjBweCIgdmlld0JveD0iMCAwIDgwIDIwIj48Y2lyY2xlIGN4PSIxMCIgY3k9IjEwIiByPSI3IiBmaWxsPSIjMDAwMDAwIiA+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iY3giIGZyb209IjEwIiB0bz0iMzAiIGR1cj0iMC41cyIgY2FsY01vZGU9InNwbGluZSIga2V5U3BsaW5lcz0iMC40MiAwIDAuNTggMSIga2V5VGltZXM9IjA7MSIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIC8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMTAiIGN5PSIxMCIgcj0iMCIgZmlsbD0iIzAwMDAwMCI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgZnJvbT0iMCIgdG89IjciIGR1cj0iMC41cyIgY2FsY01vZGU9InNwbGluZSIga2V5U3BsaW5lcz0iMC40MiAwIDAuNTggMSIga2V5VGltZXM9IjA7MSIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIC8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMzAiIGN5PSIxMCIgcj0iNyIgZmlsbD0iIzAwMDAwMCI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iY3giIGZyb209IjMwIiB0bz0iNjAiIGR1cj0iMC41cyIgY2FsY01vZGU9InNwbGluZSIga2V5U3BsaW5lcz0iMC40MiAwIDAuNTggMSIga2V5VGltZXM9IjA7MSIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIC8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iNjAiIGN5PSIxMCIgcj0iNyIgZmlsbD0iIzAwMDAwMCI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgZnJvbT0iNyIgdG89IjAiIGR1cj0iMC41cyIgY2FsY01vZGU9InNwbGluZSIga2V5U3BsaW5lcz0iMC40MiAwIDAuNTggMSIga2V5VGltZXM9IjA7MSIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIC8+PC9jaXJjbGU+PC9zdmc+">
+		</div>
+		<div class="flex-space-around">
+			<img class="btn-call-box" ng-show="hideHanswer" src="img/decrocher.png" ng-click="answerCall()" title="icon-answer" width="40px" height="40px">
+			<img class="btn-call-box" src="img/raccrocher.png" ng-click="hangupCall()" title="icon-hang-up" width="40px" height="40px">
+			<div>
+				<img class="btn-call-box" ng-show="mute" src="img/microoff.png" ng-click="muteCall()" title="icon-mute" width="40px" height="40px">
+				<img class="btn-call-box" ng-hide="mute" src="img/micro.png" ng-click="muteCall()" title="icon-unmute" width="40px" height="40px">
+			</div>
+		</div>
+	</div>
+</div>
